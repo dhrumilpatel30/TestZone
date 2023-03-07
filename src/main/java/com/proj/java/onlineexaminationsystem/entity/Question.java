@@ -25,6 +25,11 @@ public class Question {
     private String correct_answer;
     @Column
     private int max_marks;
+    @Column
+    private int avg_score;
+
+    public Question() {
+    }
 
     public Question(int question_id, Quiz quiz_id, String question, String option1, String option2,
                     String option3, String option4, String correct_answer, int max_marks) {
@@ -37,6 +42,7 @@ public class Question {
         this.option4 = option4;
         this.correct_answer = correct_answer;
         this.max_marks = max_marks;
+        avg_score = 0;
     }
 
     public int getQuestion_id() {
@@ -111,6 +117,14 @@ public class Question {
         this.max_marks = max_marks;
     }
 
+    public int getAvg_score() {
+        return avg_score;
+    }
+
+    public void setAvg_score(int avg_score) {
+        this.avg_score = avg_score;
+    }
+
     @Override
     public String toString() {
         return "Question{" +
@@ -125,4 +139,6 @@ public class Question {
                 ", max_marks=" + max_marks +
                 '}';
     }
+
+
 }
