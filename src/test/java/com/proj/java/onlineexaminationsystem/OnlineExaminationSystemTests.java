@@ -1,10 +1,10 @@
-package com.sid.java.springbootmvchibernatedemo;
+package com.proj.java.onlineexaminationsystem;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringBootMvcHibernateDemoApplicationTests {
+public class OnlineExaminationSystemTests {
 
 	@Test
 	void contextLoads() {
