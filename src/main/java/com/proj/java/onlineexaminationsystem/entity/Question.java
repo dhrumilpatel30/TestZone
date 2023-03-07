@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 @Table(name = "question")
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int question_id;
     @ManyToOne
