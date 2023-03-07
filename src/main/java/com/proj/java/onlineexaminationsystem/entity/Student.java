@@ -1,4 +1,4 @@
-package com.sid.java.springbootmvchibernatedemo.entity;
+package com.proj.java.onlineexaminationsystem.entity;
 
 import jakarta.persistence.*;
 

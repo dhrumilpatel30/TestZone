@@ -1,4 +1,4 @@
-package com.sid.java.springbootmvchibernatedemo;
+package com.proj.java.onlineexaminationsystem;
 
 
 import org.springframework.boot.SpringApplication;

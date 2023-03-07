@@ -1,12 +1,12 @@
-package com.sid.java.springbootmvchibernatedemo.service;
+package com.proj.java.onlineexaminationsystem.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sid.java.springbootmvchibernatedemo.entity.Teacher;
-import com.sid.java.springbootmvchibernatedemo.repository.TeacherDao;
+import com.proj.java.onlineexaminationsystem.entity.Teacher;
+import com.proj.java.onlineexaminationsystem.repository.TeacherDao;
 
 @Service
 public class TeacherService {

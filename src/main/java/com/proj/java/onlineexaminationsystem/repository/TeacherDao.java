@@ -1,7 +1,8 @@
-package com.sid.java.springbootmvchibernatedemo.repository;
+package com.proj.java.onlineexaminationsystem.repository;
 
 import java.util.List;
 
+import com.proj.java.onlineexaminationsystem.entity.Teacher;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
@@ -10,9 +11,6 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.sid.java.springbootmvchibernatedemo.entity.Teacher;
-
 
 
 @Repository

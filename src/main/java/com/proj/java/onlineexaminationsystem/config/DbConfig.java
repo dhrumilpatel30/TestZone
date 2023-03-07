@@ -1,4 +1,4 @@
-package com.sid.java.springbootmvchibernatedemo.config;
+package com.proj.java.onlineexaminationsystem.config;
 
 import java.util.Properties;
 
