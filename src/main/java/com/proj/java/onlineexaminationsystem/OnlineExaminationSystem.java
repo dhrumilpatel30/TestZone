@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class SpringBootMvcHibernateDemoApplication {
+public class OnlineExaminationSystem {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootMvcHibernateDemoApplication.class, args);
+		SpringApplication.run(OnlineExaminationSystem.class, args);
 	}
 	
 
