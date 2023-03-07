@@ -1,3 +1,3 @@
 # Online-Examination-System
 
-This contains spring and hibernate based java web application, with REST api and JPA repo.
+This contains java project with the use of spring MVC and hibernate frameworks.
