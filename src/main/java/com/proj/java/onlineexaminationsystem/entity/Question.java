@@ -12,7 +12,9 @@ public class Question {
     @Column
     private int question_id;
 
-    @Column
-    private int quiz_id;
+    @ManyToOne
+    @JoinColumn(name = "quiz_id")
+    private Quiz q1;
+
 
 }
