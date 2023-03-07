@@ -11,6 +11,9 @@ public class Quiz {
     @Column
     private int quiz_id;
 
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher_id;
     @Column
     private String quiz_title;
     @Column
@@ -22,17 +25,30 @@ public class Quiz {
     @Column
     private int avg_score;
 
-    public Quiz(int quiz_id, String quiz_title, String subject, String duration, int total_max_marks) {
+    public Quiz() {
+    }
+
+    public Quiz(int quiz_id, Teacher teacher_id, String quiz_title, String subject, String duration, int total_max_marks, int avg_score) {
         this.quiz_id = quiz_id;
+        this.teacher_id = teacher_id;
         this.quiz_title = quiz_title;
         this.subject = subject;
         this.duration = duration;
         this.total_max_marks = total_max_marks;
-        avg_score=0;
+        this.avg_score = avg_score;
     }
 
-    public Quiz() {
-
+    @Override
+    public String toString() {
+        return "Quiz{" +
+                "quiz_id=" + quiz_id +
+                ", teacher_id=" + teacher_id +
+                ", quiz_title='" + quiz_title + '\'' +
+                ", subject='" + subject + '\'' +
+                ", duration='" + duration + '\'' +
+                ", total_max_marks=" + total_max_marks +
+                ", avg_score=" + avg_score +
+                '}';
     }
 
     public int getQuiz_id() {
@@ -41,6 +57,14 @@ public class Quiz {
 
     public void setQuiz_id(int quiz_id) {
         this.quiz_id = quiz_id;
+    }
+
+    public Teacher getTeacher_id() {
+        return teacher_id;
+    }
+
+    public void setTeacher_id(Teacher teacher_id) {
+        this.teacher_id = teacher_id;
     }
 
     public String getQuiz_title() {
@@ -81,17 +105,5 @@ public class Quiz {
 
     public void setAvg_score(int avg_score) {
         this.avg_score = avg_score;
-    }
-
-    @Override
-    public String toString() {
-        return "Quiz{" +
-                "quiz_id=" + quiz_id +
-                ", quiz_title='" + quiz_title + '\'' +
-                ", subject='" + subject + '\'' +
-                ", duration='" + duration + '\'' +
-                ", total_max_marks=" + total_max_marks +
-                ", avg_score=" + avg_score +
-                '}';
     }
 }
