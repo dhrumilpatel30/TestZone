@@ -1,6 +1,6 @@
 package com.proj.java.onlineexaminationsystem.repository;
 
-import com.proj.java.onlineexaminationsystem.entity.Teacher;
+import com.proj.java.onlineexaminationsystem.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
@@ -20,41 +20,41 @@ public class StudentDAO {
 		entityManager = theEntityManager;
 	}
 
-	public Teacher getTeacher(final int id) {
+	public Student getStudent(final int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
-		Teacher teacher = currentSession.get(Teacher.class, id);
+		Student student = currentSession.get(Student.class, id);
 		currentSession.close();
-		return teacher;
+		return student;
 	}
 
-	public List<Teacher> getTeachers() {
+	public List<Student> getStudents() {
 		Session currentSession = entityManager.unwrap(Session.class);
 
-		TypedQuery<Teacher> theQuery = currentSession.createQuery("from Teacher", Teacher.class);
-		List<Teacher> teachers = theQuery.getResultList();
+		TypedQuery<Student> theQuery = currentSession.createQuery("from Student", Student.class);
+		List<Student> students = theQuery.getResultList();
 
 		currentSession.close();
-		return teachers;
+		return students;
 	}
 	@Transactional
-	public void addTeacher(final Teacher teacher) {
+	public void addStudent(final Student student) {
 		Session currentSession = entityManager.unwrap(Session.class);
-		currentSession.persist(teacher);
-		currentSession.close();
-	}
-
-	@Transactional
-	public void updateTeacher(final Teacher teacher) {
-		Session currentSession = entityManager.unwrap(Session.class);
-		currentSession.merge(teacher);
+		currentSession.persist(student);
 		currentSession.close();
 	}
 
 	@Transactional
-	public void deleteTeacher(final int id) {
+	public void updateStudent(final Student student) {
 		Session currentSession = entityManager.unwrap(Session.class);
-		Teacher teacher = currentSession.get(Teacher.class, id);
-		currentSession.remove(teacher);
+		currentSession.merge(student);
+		currentSession.close();
+	}
+
+	@Transactional
+	public void deleteStudent(final int id) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		Student student = currentSession.get(Student.class, id);
+		currentSession.remove(student);
 		currentSession.close();
 
 	}

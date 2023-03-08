@@ -1,6 +1,6 @@
 package com.proj.java.onlineexaminationsystem.repository;
 
-import com.proj.java.onlineexaminationsystem.entity.Teacher;
+import com.proj.java.onlineexaminationsystem.entity.Score;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
@@ -20,41 +20,41 @@ public class ScoreDAO {
 		entityManager = theEntityManager;
 	}
 
-	public Teacher getTeacher(final int id) {
+	public Score getScore(final int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
-		Teacher teacher = currentSession.get(Teacher.class, id);
+		Score score = currentSession.get(Score.class, id);
 		currentSession.close();
-		return teacher;
+		return score;
 	}
 
-	public List<Teacher> getTeachers() {
+	public List<Score> getScores() {
 		Session currentSession = entityManager.unwrap(Session.class);
 
-		TypedQuery<Teacher> theQuery = currentSession.createQuery("from Teacher", Teacher.class);
-		List<Teacher> teachers = theQuery.getResultList();
+		TypedQuery<Score> theQuery = currentSession.createQuery("from Score", Score.class);
+		List<Score> scores = theQuery.getResultList();
 
 		currentSession.close();
-		return teachers;
+		return scores;
 	}
 	@Transactional
-	public void addTeacher(final Teacher teacher) {
+	public void addScore(final Score score) {
 		Session currentSession = entityManager.unwrap(Session.class);
-		currentSession.persist(teacher);
-		currentSession.close();
-	}
-
-	@Transactional
-	public void updateTeacher(final Teacher teacher) {
-		Session currentSession = entityManager.unwrap(Session.class);
-		currentSession.merge(teacher);
+		currentSession.persist(score);
 		currentSession.close();
 	}
 
 	@Transactional
-	public void deleteTeacher(final int id) {
+	public void updateScore(final Score score) {
 		Session currentSession = entityManager.unwrap(Session.class);
-		Teacher teacher = currentSession.get(Teacher.class, id);
-		currentSession.remove(teacher);
+		currentSession.merge(score);
+		currentSession.close();
+	}
+
+	@Transactional
+	public void deleteScore(final int id) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		Score score = currentSession.get(Score.class, id);
+		currentSession.remove(score);
 		currentSession.close();
 
 	}
