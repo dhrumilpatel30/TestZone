@@ -1,6 +1,6 @@
 package com.proj.java.onlineexaminationsystem.repository;
 
-import com.proj.java.onlineexaminationsystem.entity.Teacher;
+import com.proj.java.onlineexaminationsystem.entity.Quiz;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
@@ -20,41 +20,41 @@ public class QuizDAO {
 		entityManager = theEntityManager;
 	}
 
-	public Teacher getTeacher(final int id) {
+	public Quiz getQuiz(final int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
-		Teacher teacher = currentSession.get(Teacher.class, id);
+		Quiz quiz = currentSession.get(Quiz.class, id);
 		currentSession.close();
-		return teacher;
+		return quiz;
 	}
 
-	public List<Teacher> getTeachers() {
+	public List<Quiz> getQuizs() {
 		Session currentSession = entityManager.unwrap(Session.class);
 
-		TypedQuery<Teacher> theQuery = currentSession.createQuery("from Teacher", Teacher.class);
-		List<Teacher> teachers = theQuery.getResultList();
+		TypedQuery<Quiz> theQuery = currentSession.createQuery("from Quiz", Quiz.class);
+		List<Quiz> quizes = theQuery.getResultList();
 
 		currentSession.close();
-		return teachers;
+		return quizes;
 	}
 	@Transactional
-	public void addTeacher(final Teacher teacher) {
+	public void addQuiz(final Quiz quiz) {
 		Session currentSession = entityManager.unwrap(Session.class);
-		currentSession.persist(teacher);
-		currentSession.close();
-	}
-
-	@Transactional
-	public void updateTeacher(final Teacher teacher) {
-		Session currentSession = entityManager.unwrap(Session.class);
-		currentSession.merge(teacher);
+		currentSession.persist(quiz);
 		currentSession.close();
 	}
 
 	@Transactional
-	public void deleteTeacher(final int id) {
+	public void updateQuiz(final Quiz quiz) {
 		Session currentSession = entityManager.unwrap(Session.class);
-		Teacher teacher = currentSession.get(Teacher.class, id);
-		currentSession.remove(teacher);
+		currentSession.merge(quiz);
+		currentSession.close();
+	}
+
+	@Transactional
+	public void deleteQuiz(final int id) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		Quiz quiz = currentSession.get(Quiz.class, id);
+		currentSession.remove(quiz);
 		currentSession.close();
 
 	}
