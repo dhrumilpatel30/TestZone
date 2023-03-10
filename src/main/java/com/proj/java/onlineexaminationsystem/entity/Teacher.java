@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.websocket.ClientEndpoint;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "teacher")
@@ -12,9 +13,10 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int teacher_id;
+    @OneToMany(mappedBy="question",cascade = CascadeType.ALL)
+    private List<Quiz> quiz;
     @Column
     private String subject;
-
     @Column
     private String name;
 
@@ -83,5 +85,13 @@ public class Teacher {
 
     public void setDate_of_birth(Date date_of_birth) {
         this.date_of_birth = date_of_birth;
+    }
+
+    public List<Quiz> getQuiz() {
+        return quiz;
+    }
+
+    public void setQuiz(List<Quiz> quiz) {
+        this.quiz = quiz;
     }
 }

@@ -8,7 +8,7 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int question_id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "quiz_id")
     private Quiz quiz_id;
     @Column

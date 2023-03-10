@@ -11,11 +11,11 @@ public class Result {
     @Column
     private int result_id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "quiz_id")
     private Quiz quiz_id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "student_id")
     private Student student_id;
 

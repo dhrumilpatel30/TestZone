@@ -11,7 +11,7 @@ public class Quiz {
     @Column
     private int quiz_id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher_id;
     @Column
