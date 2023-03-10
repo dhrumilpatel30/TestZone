@@ -8,49 +8,37 @@ import java.util.List;
 
 @Entity
 @Table(name = "student")
-public class Student implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private int student_id;
+public class Student extends Person implements Serializable {
     @OneToMany(mappedBy="student_id",cascade = CascadeType.ALL)
     private List<Score> scores;
     @OneToMany(mappedBy="student_id",cascade = CascadeType.ALL)
     private List<Result> results;
     @Column
-    private String email;
-    @Column
-    private String name;
-    @Column
     private String batch;
-    @Column
-    private Date date_of_birth;
-    @Column
-    private String gender;
 
-    public int getStudent_id() {
-        return student_id;
+    public Student() {
     }
 
-    public void setStudent_id(int student_id) {
-        this.student_id = student_id;
+    public Student(List<Score> scores, List<Result> results, String batch) {
+        this.scores = scores;
+        this.results = results;
+        this.batch = batch;
     }
 
-    public String getEmail() {
-        return email;
+    public List<Score> getScores() {
+        return scores;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
     }
 
-    public String getName() {
-        return name;
+    public List<Result> getResults() {
+        return results;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setResults(List<Result> results) {
+        this.results = results;
     }
 
     public String getBatch() {
@@ -61,44 +49,12 @@ public class Student implements Serializable {
         this.batch = batch;
     }
 
-    public Date getDate_of_birth() {
-        return date_of_birth;
-    }
-
-    public void setDate_of_birth(Date date_of_birth) {
-        this.date_of_birth = date_of_birth;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
     @Override
     public String toString() {
         return "Student{" +
-                "student_id=" + student_id +
-                ", email='" + email + '\'' +
-                ", name='" + name + '\'' +
+                "scores=" + scores +
+                ", results=" + results +
                 ", batch='" + batch + '\'' +
-                ", date_of_birth=" + date_of_birth +
-                ", gender='" + gender + '\'' +
                 '}';
     }
-
-    public Student() {
-    }
-
-    public Student(int student_id, String email, String name, String batch, Date date_of_birth, String gender) {
-        this.student_id = student_id;
-        this.email = email;
-        this.name = name;
-        this.batch = batch;
-        this.date_of_birth = date_of_birth;
-        this.gender = gender;
-    }
-
 }
