@@ -3,6 +3,8 @@ package com.proj.java.onlineexaminationsystem.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "quiz")
 public class Quiz {
@@ -14,6 +16,12 @@ public class Quiz {
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher_id;
+    @OneToMany(mappedBy="quiz_id",cascade = CascadeType.ALL)
+    private List<Question> questions;
+    @OneToMany(mappedBy="quiz_id",cascade = CascadeType.ALL)
+    private List<Score> scores;
+    @OneToMany(mappedBy="quiz_id",cascade = CascadeType.ALL)
+    private List<Result> results;
     @Column
     private String quiz_title;
     @Column

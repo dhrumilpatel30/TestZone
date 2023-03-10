@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "student")
@@ -13,6 +14,10 @@ public class Student implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int student_id;
+    @OneToMany(mappedBy="student_id",cascade = CascadeType.ALL)
+    private List<Score> scores;
+    @OneToMany(mappedBy="student_id",cascade = CascadeType.ALL)
+    private List<Result> results;
     @Column
     private String email;
     @Column

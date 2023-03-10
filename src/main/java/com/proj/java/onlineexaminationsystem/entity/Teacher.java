@@ -13,7 +13,7 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int teacher_id;
-    @OneToMany(mappedBy="question",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="teacher_id",cascade = CascadeType.ALL)
     private List<Quiz> quiz;
     @Column
     private String subject;
