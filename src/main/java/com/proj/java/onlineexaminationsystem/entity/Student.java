@@ -15,14 +15,47 @@ public class Student extends Person implements Serializable {
     private List<Result> results;
     @Column
     private String batch;
+    @Column
+    private int semester;
+    @Column
+    private int roll_no;
 
     public Student() {
     }
+    @Override
+    public String toString() {
+        return "Student{" +
+                "scores=" + scores +
+                ", results=" + results +
+                ", batch='" + batch + '\'' +
+                ", semester=" + semester +
+                ", roll_no=" + roll_no +
+                '}';
+    }
 
-    public Student(List<Score> scores, List<Result> results, String batch) {
+    public Student(int person_id, String name, String email, Date date_of_birth, String gender, List<Score> scores, List<Result> results, String batch, int semester, int roll_no) {
+        super(person_id, name, email, date_of_birth, gender);
         this.scores = scores;
         this.results = results;
         this.batch = batch;
+        this.semester = semester;
+        this.roll_no = roll_no;
+    }
+
+    public int getSemester() {
+        return semester;
+    }
+
+    public void setSemester(int semester) {
+        this.semester = semester;
+    }
+
+    public int getRoll_no() {
+        return roll_no;
+    }
+
+    public void setRoll_no(int roll_no) {
+        this.roll_no = roll_no;
     }
 
     public List<Score> getScores() {
@@ -49,12 +82,4 @@ public class Student extends Person implements Serializable {
         this.batch = batch;
     }
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "scores=" + scores +
-                ", results=" + results +
-                ", batch='" + batch + '\'' +
-                '}';
-    }
 }
