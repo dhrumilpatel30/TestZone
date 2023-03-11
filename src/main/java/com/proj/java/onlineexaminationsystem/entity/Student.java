@@ -13,8 +13,8 @@ public class Student extends Person implements Serializable {
     private List<Score> scores;
     @OneToMany(mappedBy="student_id",cascade = CascadeType.ALL)
     private List<Result> results;
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private String batch;
+//    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private String batch;
     @Column
     private int semester;
     @Column
