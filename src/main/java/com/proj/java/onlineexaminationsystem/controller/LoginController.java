@@ -26,8 +26,20 @@ public class LoginController {
         return "teacher_login_page";
     }
     @PostMapping("student")
-    public String check(@RequestParam(value = "student_id", required = true) int student_id,
-                        @RequestParam(value = "dateofbirth", required = true) String dateofbirth, ModelMap teacherModel){
+    public String checkStudent(@RequestParam(value = "student_id", required = true) int student_id,
+                               @RequestParam(value = "dateofbirth", required = true) String dateofbirth, ModelMap teacherModel){
+//        teacherModel.addAttribute("msg",student_id+dateofbirth);
+//        if(studentService.validate().equals("success")){
+//
+//        }
+//        else{
+//            teacherModel.addAttribute("msg",studentService.validate());
+//        }
+        return "student_login_page";
+    }
+    @PostMapping("teacher")
+    public String checkTeacher(@RequestParam(value = "student_id", required = true) int student_id,
+                               @RequestParam(value = "dateofbirth", required = true) String dateofbirth, ModelMap teacherModel){
         teacherModel.addAttribute("msg",student_id+dateofbirth);
         return "student_login_page";
     }
