@@ -19,11 +19,11 @@ public class LoginController {
 
     @RequestMapping ("/student")
     public String doLoginStudent(){
-        return "student_login_page";
+        return "student/login_page";
     }
     @RequestMapping("/teacher")
     public String doLoginTeacher(){
-        return "teacher_login_page";
+        return "teacher/login_page";
     }
     @PostMapping("student")
     public String checkStudent(@RequestParam(value = "student_id", required = true) int student_id,
@@ -35,7 +35,7 @@ public class LoginController {
 //        else{
 //            studentModel.addAttribute("msg",studentService.validate(student_id,dateofbirth));
 //        }
-        return "student_home_page";
+        return "student/home_page";
     }
     @PostMapping("teacher")
     public String checkTeacher(@RequestParam(value = "student_id", required = true) int student_id,
@@ -47,6 +47,6 @@ public class LoginController {
 //        else{
 //            teacherModel.addAttribute("msg",teacherService.validate(teacher_id,dateofbirth));
 //        }
-        return "teacher_home_page";
+        return "teacher/home_page";
     }
 }
