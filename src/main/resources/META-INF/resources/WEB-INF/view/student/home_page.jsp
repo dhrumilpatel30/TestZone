@@ -26,18 +26,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="t" items="${teachers}">
+				<c:forEach var="q" items="${quizs}">
 					<tr>
-						<td>${t.id}</td>
-						<td>${t.name}</td>
-						<td>${t.expertise}</td>
-						<td><a
-							href="<%=request.getContextPath()%>/teacher/${t.id}">Details</a>
-							&nbsp;<a
-							href="<%=request.getContextPath()%>/update/teacher/${t.id}">Update</a>
-							&nbsp; <a
-							href="<%=request.getContextPath()%>/delete/teacher/${t.id}"
-							onclick="return confirm('Do you really want to delete?')">Delete</a></td>
+
+					<td>quiz_id</td>
+					<td>title</td>
+					<td>duration</td>
+					<td>Subject</td>
+					<td>maximum marks</td>
+					<td>submissions</td>
+					<td>avg score</td>
+					<td>creator teacher name</td>
 					</tr>
 				</c:forEach>
 			</tbody>
