@@ -4,7 +4,6 @@
 <html>
 <body>
 <h2>Online Examination System</h2>
-<c:if test=""
 <h3>Welcome ${teacherName} to online examination system</h3>
 </body>
 </html>
