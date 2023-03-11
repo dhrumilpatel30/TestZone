@@ -12,22 +12,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.awt.event.PaintEvent;
 
 @Controller
+@RequestMapping("/login")
 public class LoginController {
     @Autowired
     private StudentService studentService;
 
-    @GetMapping("/student")
+    @RequestMapping ("/student")
     public String doLoginStudent(){
         return "student_login_page";
     }
-    @GetMapping("/teacher")
+    @RequestMapping("/teacher")
     public String doLoginTeacher(){
         return "teacher_login_page";
     }
-//    @PostMapping("student")
-//    public String check(@RequestParam(value = "student_id", required = true) int student_id,
-//                        @RequestParam(value = "dateofbirth", required = true) String dateofbirth, ModelMap teacherModel){
-//        studentService
-//
-//    }
+    @PostMapping("student")
+    public String check(@RequestParam(value = "student_id", required = true) int student_id,
+                        @RequestParam(value = "dateofbirth", required = true) String dateofbirth, ModelMap teacherModel){
+        teacherModel.addAttribute("msg",student_id+dateofbirth);
+        return "student_login_page";
+    }
 }
