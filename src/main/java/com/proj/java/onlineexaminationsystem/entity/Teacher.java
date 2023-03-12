@@ -10,22 +10,22 @@ import java.util.List;
 @Table(name = "teacher")
 public class Teacher extends Person{
     @OneToMany(mappedBy="teacher_id",cascade = CascadeType.ALL)
-    private List<Quiz> quiz;
+    private List<Quiz> quizzes;
     @Column
     private String subject;
 
     public Teacher() {
     }
-    public Teacher(List<Quiz> quiz, String subject) {
-        this.quiz = quiz;
+    public Teacher(List<Quiz> quizzes, String subject) {
+        this.quizzes = quizzes;
         this.subject = subject;
     }
     public List<Quiz> getQuiz() {
-        return quiz;
+        return quizzes;
     }
 
-    public void setQuiz(List<Quiz> quiz) {
-        this.quiz = quiz;
+    public void setQuiz(List<Quiz> quizzes) {
+        this.quizzes = quizzes;
     }
 
     public String getSubject() {
@@ -39,7 +39,7 @@ public class Teacher extends Person{
     @Override
     public String toString() {
         return "Teacher{" +
-                "quiz=" + quiz +
+                "quizzes=" + quizzes +
                 ", subject='" + subject + '\'' +
                 '}';
     }

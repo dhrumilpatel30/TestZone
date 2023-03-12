@@ -22,6 +22,10 @@ public class Quiz {
     private List<Score> scores;
     @OneToMany(mappedBy="quiz_id",cascade = CascadeType.ALL)
     private List<Result> results;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "quizbatch",joinColumns = @JoinColumn(name = "quiz_id", referencedColumnName = "quiz_id")
+    , inverseJoinColumns = @JoinColumn(name = "batch", referencedColumnName = "batch"))
+    private List<Student> batches;
     @Column
     private String quiz_title;
     @Column
@@ -113,5 +117,37 @@ public class Quiz {
 
     public void setAvg_score(int avg_score) {
         this.avg_score = avg_score;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
+    }
+
+    public List<Result> getResults() {
+        return results;
+    }
+
+    public void setResults(List<Result> results) {
+        this.results = results;
+    }
+
+    public List<Student> getStudents() {
+        return batches;
+    }
+
+    public void setStudents(List<Student> batches) {
+        this.batches = batches;
     }
 }
