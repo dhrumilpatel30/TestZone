@@ -1,5 +1,6 @@
 package com.proj.java.onlineexaminationsystem.controller;
 
+import com.proj.java.onlineexaminationsystem.entity.Student;
 import com.proj.java.onlineexaminationsystem.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,18 +36,13 @@ public class LoginController {
 //        else{
 //            studentModel.addAttribute("msg",studentService.validate(student_id,dateofbirth));
 //        }
+        Student student = studentService.getStudent(student_id);
+        studentModel.addAttribute("studentName",student.getName());
         return "student/home_page";
     }
     @PostMapping("teacher")
     public String checkTeacher(@RequestParam(value = "student_id", required = true) int student_id,
                                @RequestParam(value = "dateofbirth", required = true) String dateofbirth, ModelMap teacherModel){
-//        teacherModel.addAttribute("msg",student_id+dateofbirth);
-//        if(teacherService.validate(teacher_id,dateofbirth).equals("success")){
-//
-//        }
-//        else{
-//            teacherModel.addAttribute("msg",teacherService.validate(teacher_id,dateofbirth));
-//        }
         return "teacher/home_page";
     }
 }

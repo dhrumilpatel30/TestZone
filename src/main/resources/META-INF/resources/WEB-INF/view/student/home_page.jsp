@@ -6,12 +6,11 @@
 <h2>Online Examination System</h2>
 <h3>Welcome ${studentName} to online examination system</h3>
 <h2>Quiz's</h2>
-<a href="<%=request.getContextPath()%>/addTeacher">Add</a>
 <c:if test="${not empty msg}">
 	${msg}
 </c:if>
 <c:choose>
-	<c:when test="${quizs != null}">
+	<c:when test="${quizzes != null}">
 		<table cellpadding="5" cellspacing="5">
 			<thead>
 				<tr>
@@ -29,7 +28,7 @@
 				<c:forEach var="q" items="${quizs}">
 					<tr>
 
-					<td>quiz_id</td>
+					<td>q</td>
 					<td>title</td>
 					<td>duration</td>
 					<td>Subject</td>
