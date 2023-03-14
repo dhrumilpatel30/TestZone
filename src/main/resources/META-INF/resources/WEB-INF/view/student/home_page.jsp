@@ -14,35 +14,31 @@
 		<table cellpadding="5" cellspacing="5">
 			<thead>
 				<tr>
-					<th>quiz id</th>
+					<th>id</th>
 					<th>title</th>
 					<th>duration</th>
 					<th>Subject</th>
 					<th>maximum marks</th>
-					<th>submissions</th>
 					<th>avg score</th>
-					<th>creator teacher name</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="q" items="${quizs}">
+				<c:forEach var="q" items="${quizzes}">
 					<tr>
-
-					<td>q</td>
-					<td>title</td>
-					<td>duration</td>
-					<td>Subject</td>
-					<td>maximum marks</td>
-					<td>submissions</td>
-					<td>avg score</td>
-					<td>creator teacher name</td>
+					<td>${q.batch}</td>
+<%--					<td>${q.quiz_title}</td>--%>
+<%--					<td>${q.duration}</td>--%>
+<%--					<td>${q.subject}</td>--%>
+<%--					<td>${q.total_max_marks}</td>--%>
+<%--					<td>${q.avg_score}</td>--%>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</c:when>
 	<c:otherwise>
-	No User found in the DB!
+	No Quiz found,
+		Enjoy :)
 	</c:otherwise>
 </c:choose>
 

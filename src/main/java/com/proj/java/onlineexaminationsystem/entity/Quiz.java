@@ -22,10 +22,6 @@ public class Quiz {
     private List<Score> scores;
     @OneToMany(mappedBy="quiz_id",cascade = CascadeType.ALL)
     private List<Result> results;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "quizbatch",joinColumns = @JoinColumn(name = "quiz_id", referencedColumnName = "quiz_id")
-    , inverseJoinColumns = @JoinColumn(name = "batch", referencedColumnName = "batch"))
-    private List<Student> batches;
     @Column
     private String quiz_title;
     @Column
@@ -55,6 +51,9 @@ public class Quiz {
         return "Quiz{" +
                 "quiz_id=" + quiz_id +
                 ", teacher_id=" + teacher_id +
+                ", questions=" + questions +
+                ", scores=" + scores +
+                ", results=" + results +
                 ", quiz_title='" + quiz_title + '\'' +
                 ", subject='" + subject + '\'' +
                 ", duration='" + duration + '\'' +
@@ -143,11 +142,4 @@ public class Quiz {
         this.results = results;
     }
 
-    public List<Student> getStudents() {
-        return batches;
-    }
-
-    public void setStudents(List<Student> batches) {
-        this.batches = batches;
-    }
 }

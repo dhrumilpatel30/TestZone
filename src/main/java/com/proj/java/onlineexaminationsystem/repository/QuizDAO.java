@@ -32,7 +32,7 @@ public class QuizDAO {
 
 		TypedQuery<Quiz> theQuery = currentSession.createQuery("from Quiz", Quiz.class);
 		List<Quiz> quizes = theQuery.getResultList();
-
+		System.out.println(quizes);
 		currentSession.close();
 		return quizes;
 	}
