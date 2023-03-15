@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -26,15 +27,19 @@ public class QuizDAO {
 		currentSession.close();
 		return quiz;
 	}
-
+//	public boolean validate(int quiz_id,String date_of_birth){
+//		Session currentSession = entityManager.unwrap(Session.class);
+//		TypedQuery<Quiz> theQuery = currentSession.createQuery("from Quiz where person_id = ? and date_of_birth = ?", Quiz.class);
+//		theQuery.
+//		List<Quiz> quizs = theQuery.getResultList();
+//		return false;
+//	}
 	public List<Quiz> getQuizs() {
 		Session currentSession = entityManager.unwrap(Session.class);
-
 		TypedQuery<Quiz> theQuery = currentSession.createQuery("from Quiz", Quiz.class);
-		List<Quiz> quizes = theQuery.getResultList();
-		System.out.println(quizes);
+		List<Quiz> quizs = theQuery.getResultList();
 		currentSession.close();
-		return quizes;
+		return quizs;
 	}
 	@Transactional
 	public void addQuiz(final Quiz quiz) {

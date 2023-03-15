@@ -25,12 +25,12 @@
 			<tbody>
 				<c:forEach var="q" items="${quizzes}">
 					<tr>
-					<td>${q.batch}</td>
-<%--					<td>${q.quiz_title}</td>--%>
-<%--					<td>${q.duration}</td>--%>
-<%--					<td>${q.subject}</td>--%>
-<%--					<td>${q.total_max_marks}</td>--%>
-<%--					<td>${q.avg_score}</td>--%>
+						<td>${q.quiz_id}</td>
+						<td>${q.quiz_title}</td>
+						<td>${q.duration} min</td>
+						<td>${q.subject}</td>
+						<td>${q.total_max_marks}</td>
+						<td>${q.avg_score}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

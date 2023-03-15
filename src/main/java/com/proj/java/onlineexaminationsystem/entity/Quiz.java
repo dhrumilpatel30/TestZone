@@ -27,7 +27,7 @@ public class Quiz {
     @Column
     private String subject;
     @Column
-    private String duration;
+    private int duration;
     @Column
     private int total_max_marks;
     @Column
@@ -36,7 +36,7 @@ public class Quiz {
     public Quiz() {
     }
 
-    public Quiz(int quiz_id, Teacher teacher_id, String quiz_title, String subject, String duration, int total_max_marks, int avg_score) {
+    public Quiz(int quiz_id, Teacher teacher_id, String quiz_title, String subject, int duration, int total_max_marks, int avg_score) {
         this.quiz_id = quiz_id;
         this.teacher_id = teacher_id;
         this.quiz_title = quiz_title;
@@ -51,9 +51,6 @@ public class Quiz {
         return "Quiz{" +
                 "quiz_id=" + quiz_id +
                 ", teacher_id=" + teacher_id +
-                ", questions=" + questions +
-                ", scores=" + scores +
-                ", results=" + results +
                 ", quiz_title='" + quiz_title + '\'' +
                 ", subject='" + subject + '\'' +
                 ", duration='" + duration + '\'' +
@@ -94,11 +91,11 @@ public class Quiz {
         this.subject = subject;
     }
 
-    public String getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 

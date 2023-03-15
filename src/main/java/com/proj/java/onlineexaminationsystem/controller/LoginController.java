@@ -22,6 +22,8 @@ import java.util.List;
 public class LoginController {
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private  QuizService quizService;
 
     @RequestMapping("/student")
     public String doLoginStudent(){
@@ -41,11 +43,9 @@ public class LoginController {
 //        else{
 //            studentModel.addAttribute("msg",studentService.validate(student_id,dateofbirth));
 //        }
-        Integer student_id1 = Integer.valueOf(student_id);
+        int student_id1 = Integer.parseInt(student_id);
         Student student = studentService.getStudent(student_id1);
-//        List<Quiz> q1 = new ArrayList<>();
-//        q1.add(quizService.getQuiz(1));
-        studentModel.addAttribute("quizzes",studentService.getStudents());
+        studentModel.addAttribute("quizzes",quizService.getQuizs());
         studentModel.addAttribute("studentName",student.getName());
         return "student/home_page";
     }
