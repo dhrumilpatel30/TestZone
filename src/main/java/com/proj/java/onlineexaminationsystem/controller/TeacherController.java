@@ -25,8 +25,8 @@ public class TeacherController {
 	
     @RequestMapping("")
     public String showPage(ModelMap model) {
-    	List<Quiz> quizs = quizService.getQuizs();
-    	model.addAttribute("quizs", quizs);
+    	List<Quiz> quizzes = quizService.getQuizs();
+    	model.addAttribute("quizzes", quizzes);
     	return "teacher/home_page";
     }
     
@@ -43,8 +43,8 @@ public class TeacherController {
         	model.addAttribute("error", "Wrong credentials !!");
         	return "teacher/login_page";
         }
-        List<Quiz> quizs = quizService.getQuizs();
-    	model.addAttribute("quizs", quizs);
+        List<Quiz> quizzes = quizService.getQuizs();
+    	model.addAttribute("quizzes", quizzes);
         return "teacher/home_page";
     }
     
@@ -58,7 +58,7 @@ public class TeacherController {
     public String registerStudent(@ModelAttribute("teacher") Teacher teacher, ModelMap model) {
     	teacherService.addTeacher(teacher);
     	
-    	model.addAttribute("success","Acount Created Successfully");
+    	model.addAttribute("success","Account Created Successfully");
     	return "/teacher/login_page";
     }
     @GetMapping("signup")

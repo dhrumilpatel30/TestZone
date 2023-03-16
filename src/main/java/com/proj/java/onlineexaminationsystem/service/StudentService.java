@@ -1,21 +1,23 @@
 package com.proj.java.onlineexaminationsystem.service;
 
 import com.proj.java.onlineexaminationsystem.entity.Student;
-import com.proj.java.onlineexaminationsystem.repository.QuizDAO;
 import com.proj.java.onlineexaminationsystem.repository.StudentDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class StudentService {
 
 	@Autowired
 	private StudentDAO studentDAO;
+
 	public Student getStudent(final int id) {
 		return studentDAO.getStudent(id);
+	}
+	public Student getStudentByEmail(final String email) {
+		return studentDAO.getStudentByEmail(email);
 	}
 
 	public List<Student> getStudents() {
@@ -32,6 +34,10 @@ public class StudentService {
 
 	public void deleteStudent(final int id) {
 		studentDAO.deleteStudent(id);
+	}
+	
+	public boolean login(String email,String password) {
+		return studentDAO.validate(email, password);
 	}
 
 }

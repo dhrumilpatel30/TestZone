@@ -1,6 +1,7 @@
 package com.proj.java.onlineexaminationsystem.repository;
 
-import java.util.List;
+import com.proj.java.onlineexaminationsystem.entity.Student;
+import com.proj.java.onlineexaminationsystem.entity.Teacher;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
@@ -8,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.proj.java.onlineexaminationsystem.entity.Teacher;
+import java.util.List;
 
 @Repository
 public class TeacherDAO {
@@ -26,7 +27,19 @@ public class TeacherDAO {
 		currentSession.close();
 		return teacher;
 	}
-
+	public boolean validate(String email,String password){
+		Session currentSession = entityManager.unwrap(Session.class);
+		TypedQuery<Student> theQuery = currentSession.createQuery("from Teacher where email =:email and password =:pass", Student.class);
+		theQuery.setParameter("email", email);
+		theQuery.setParameter("pass", password);
+		
+		List<Student> students = theQuery.getResultList();
+		
+		if(students.isEmpty()) {
+			return false;
+		}
+		return true;
+	}
 	public List<Teacher> getTeachers() {
 		Session currentSession = entityManager.unwrap(Session.class);
 

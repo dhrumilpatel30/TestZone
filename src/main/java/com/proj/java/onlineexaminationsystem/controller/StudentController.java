@@ -25,12 +25,10 @@ public class StudentController {
 	
     @RequestMapping("")
     public String showPage(ModelMap model) {
-    	List<Quiz> quizs = quizService.getQuizs();
-    	model.addAttribute("quizs", quizs);
+    	List<Quiz> quizzes = quizService.getQuizs();
+    	model.addAttribute("quizzes", quizzes);
     	return "student/home_page";
     }
-    
-    
     
     @PostMapping("login")
     public String checkStudent(@RequestParam(value = "email", required = true) String email,
@@ -45,24 +43,25 @@ public class StudentController {
         	model.addAttribute("error", "Wrong credentials !!");
         	return "student/login_page";
         }
-        List<Quiz> quizs = quizService.getQuizs();
-    	model.addAttribute("quizs", quizs);
+        List<Quiz> quizzes = quizService.getQuizs();
+        Student student = studentService.getStudentByEmail(email);
+    	model.addAttribute("quizzes", quizzes);
+        model.addAttribute("success","Welcome "+student.getName());
         return "student/home_page";
     }
     
     @GetMapping("login")
     public String loginGet() {
-    	
     	return "student/login_page";
     }
     
     @PostMapping("signup")
     public String registerStudent(@ModelAttribute("student") Student student, ModelMap model) {
     	studentService.addStudent(student);
-    	List<Student> students = studentService.getStudents();
-    	model.addAttribute("students", students);
+//    	List<Student> students = studentService.getStudents();
+//    	model.addAttribute("students", students);
     	model.addAttribute("success","Account Created Successfully");
-    	return "redirect:/student/login";
+    	return "/student/login_page";
     }
     @GetMapping("signup")
     public String RegisterGet(ModelMap model) {

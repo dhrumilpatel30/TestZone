@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -27,13 +26,25 @@ public class StudentDAO {
 		currentSession.close();
 		return student;
 	}
-//	public boolean validate(int student_id,String date_of_birth){
-//		Session currentSession = entityManager.unwrap(Session.class);
-//		TypedQuery<Student> theQuery = currentSession.createQuery("from Student where person_id = ? and date_of_birth = ?", Student.class);
-//		theQuery.
-//		List<Student> students = theQuery.getResultList();
-//		return false;
-//	}
+	public boolean validate(String email,String password) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		TypedQuery<Student> theQuery = currentSession.createQuery("from Student where email =:email and password =:pass", Student.class);
+		theQuery.setParameter("email", email);
+		theQuery.setParameter("pass", password);
+
+		List<Student> students = theQuery.getResultList();
+
+		if (students.isEmpty()) {
+			return false;
+		}
+		return true;
+	}
+	public Student getStudentByEmail(String email){
+		Session currentSession = entityManager.unwrap(Session.class);
+		TypedQuery<Student> theQuery = currentSession.createQuery("from Student where email =:email", Student.class);
+		theQuery.setParameter("email", email);
+		return theQuery.getSingleResult();
+	}
 	public List<Student> getStudents() {
 		Session currentSession = entityManager.unwrap(Session.class);
 

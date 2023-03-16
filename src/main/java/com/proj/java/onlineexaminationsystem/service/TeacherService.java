@@ -1,10 +1,11 @@
 package com.proj.java.onlineexaminationsystem.service;
 
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.proj.java.onlineexaminationsystem.entity.Teacher;
 import com.proj.java.onlineexaminationsystem.repository.TeacherDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TeacherService {
@@ -31,5 +32,7 @@ public class TeacherService {
 	public void deleteTeacher(final int id) {
 		teacherDAO.deleteTeacher(id);
 	}
-
+	public boolean login(String email,String password) {
+		return teacherDAO.validate(email, password);
+	}
 }
