@@ -29,6 +29,7 @@
 					<th>Subject</th>
 					<th>maximum marks</th>
 					<th>avg score</th>
+					<th>Edit</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -40,6 +41,10 @@
 						<td>${q.subject}</td>
 						<td>${q.total_max_marks}</td>
 						<td>${q.avg_score}</td>
+						<td><a href="<%=request.getContextPath()%>/quiz/update/${q.quiz_id}">Update</a>
+							<a href="<%=request.getContextPath()%>/quiz/delete/${q.quiz_id}"
+							   onclick="return confirm('Do you really want to delete?')">Delete</a>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
