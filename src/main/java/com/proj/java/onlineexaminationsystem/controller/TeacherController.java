@@ -31,7 +31,7 @@ public class TeacherController {
     }
     
     @PostMapping("login")
-    public String checkStudent(@RequestParam(value = "email", required = true) String email,
+    public String checkTeacher(@RequestParam(value = "email", required = true) String email,
                                @RequestParam(value = "password", required = true) String password,HttpServletRequest request, ModelMap model){
         
         if(teacherService.login(email,password)){
@@ -55,14 +55,14 @@ public class TeacherController {
     }
     
     @PostMapping("signup")
-    public String registerStudent(@ModelAttribute("teacher") Teacher teacher, ModelMap model) {
+    public String registerTeacher(@ModelAttribute("teacher") Teacher teacher, ModelMap model) {
     	teacherService.addTeacher(teacher);
     	
     	model.addAttribute("success","Account Created Successfully");
     	return "/teacher/login_page";
     }
     @GetMapping("signup")
-    public String RegisterGet(ModelMap model) {
+    public String registerGet(ModelMap model) {
     	Teacher stu = new Teacher();
     	model.addAttribute("teacher", stu);
     	return "teacher/signup";

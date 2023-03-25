@@ -6,6 +6,7 @@ import com.proj.java.onlineexaminationsystem.entity.Quiz;
 import com.proj.java.onlineexaminationsystem.entity.Student;
 import com.proj.java.onlineexaminationsystem.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +17,12 @@ public class QuizController {
 
 	@Autowired
 	private QuizService quizService;
-
 	@GetMapping("/{id}")
 	public String getQuiz(@PathVariable int id, ModelMap quizModel) {
 		Quiz quiz = quizService.getQuiz(id);
 		quizModel.addAttribute("quiz", quiz);
 		return "quiz/home_page";
 	}
-
 	@GetMapping("/addQuiz")
 	public String addPage() {
 		return "quiz/add";
@@ -47,15 +46,11 @@ public class QuizController {
 	}
 
 	@PostMapping("/update")
-	public String updateQuiz( ModelMap quizModel) {
-		Quiz quiz = new Quiz(id,name,expertise);
-		/*
-		 * quiz.setId(id); quiz.setName(name); quiz.setExpertise(expertise);
-		 */
+	public String updateQuiz(@ModelAttribute("quiz") Quiz quiz, ModelMap quizModel) {
 		quizService.updateQuiz(quiz);
 		List<Quiz> quizs = quizService.getQuizs();
 		quizModel.addAttribute("quizs", quizs);
-		quizModel.addAttribute("id", id);
+		quizModel.addAttribute("id", quiz.getQuiz_id());
 		quizModel.addAttribute("msg", "Quiz updated successfully");
 		return "quiz/quizs";
 	}
