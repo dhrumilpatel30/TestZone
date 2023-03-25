@@ -3,6 +3,7 @@ package com.proj.java.onlineexaminationsystem.controller;
 import java.util.List;
 
 import com.proj.java.onlineexaminationsystem.entity.Quiz;
+import com.proj.java.onlineexaminationsystem.entity.Student;
 import com.proj.java.onlineexaminationsystem.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,33 +24,30 @@ public class QuizController {
 		return "quiz/home_page";
 	}
 
-	@GetMapping("addQuiz")
+	@GetMapping("/addQuiz")
 	public String addPage() {
-		return "add";
+		return "quiz/add";
 	}
 
 	@PostMapping("/add")
-	public String addQuiz(@RequestParam(value = "name", required = true) String name,
-			@RequestParam(value = "expertise", required = true) String expertise, ModelMap quizModel) {
-		Quiz quiz = new Quiz();
+	public String addQuiz(@ModelAttribute("quiz") Quiz quiz, ModelMap quizModel) {
 		quizService.addQuiz(quiz);
 		quizModel.addAttribute("msg", "Quiz added successfully");
 		List<Quiz> quizs = quizService.getQuizs();
 		quizModel.addAttribute("quizs", quizs);
-		return "redirect:/quizs";
+		return "quiz/quizs";
 	}
 
-	@GetMapping("update/{id}")
+	@GetMapping("/update/{id}")
 	public String updatePage(@PathVariable("id") int id, ModelMap quizModel) {
 		quizModel.addAttribute("id", id);
 		Quiz quiz = quizService.getQuiz(id);
 		quizModel.addAttribute("quiz", quiz);
-		return "update";
+		return "quiz/quizs";
 	}
 
 	@PostMapping("/update")
-	public String updateQuiz(@RequestParam int id, @RequestParam(value = "name", required = true) String name,
-			@RequestParam(value = "expertise", required = true) String expertise, ModelMap quizModel) {
+	public String updateQuiz( ModelMap quizModel) {
 		Quiz quiz = new Quiz(id,name,expertise);
 		/*
 		 * quiz.setId(id); quiz.setName(name); quiz.setExpertise(expertise);
@@ -59,7 +57,7 @@ public class QuizController {
 		quizModel.addAttribute("quizs", quizs);
 		quizModel.addAttribute("id", id);
 		quizModel.addAttribute("msg", "Quiz updated successfully");
-		return "redirect:/quizs";
+		return "quiz/quizs";
 	}
 
 	@GetMapping("/delete/{id}")
@@ -68,7 +66,7 @@ public class QuizController {
 		List<Quiz> quizs = quizService.getQuizs();
 		quizModel.addAttribute("quizs", quizs);
 		quizModel.addAttribute("msg", "Quiz delted successfully");
-		return "redirect:/quizs";
+		return "quiz/quizs";
 	}
 
 }
