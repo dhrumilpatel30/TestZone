@@ -5,6 +5,8 @@ import java.util.List;
 import com.proj.java.onlineexaminationsystem.entity.Quiz;
 import com.proj.java.onlineexaminationsystem.entity.Student;
 import com.proj.java.onlineexaminationsystem.service.QuizService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
@@ -29,7 +31,11 @@ public class QuizController {
 	}
 
 	@PostMapping("/add")
-	public String addQuiz(@ModelAttribute("quiz") Quiz quiz, ModelMap quizModel) {
+	public String addQuiz(@ModelAttribute("quiz") Quiz quiz, HttpServletRequest request, ModelMap quizModel) {
+		HttpSession session = request.getSession();
+		if(session.isNew() || !session.getAttribute("role").equals("teacher")){
+			return "redirect:/";
+		}
 		quizService.addQuiz(quiz);
 		quizModel.addAttribute("msg", "Quiz added successfully");
 		List<Quiz> quizs = quizService.getQuizs();
@@ -46,7 +52,11 @@ public class QuizController {
 	}
 
 	@PostMapping("/update")
-	public String updateQuiz(@ModelAttribute("quiz") Quiz quiz, ModelMap quizModel) {
+	public String updateQuiz(@ModelAttribute("quiz") Quiz quiz, HttpServletRequest request, ModelMap quizModel) {
+		HttpSession session = request.getSession();
+		if(session.isNew() || !session.getAttribute("role").equals("teacher")){
+			return "redirect:/";
+		}
 		quizService.updateQuiz(quiz);
 		List<Quiz> quizs = quizService.getQuizs();
 		quizModel.addAttribute("quizs", quizs);
@@ -56,7 +66,11 @@ public class QuizController {
 	}
 
 	@GetMapping("/delete/{id}")
-	public String deleteQuiz(@PathVariable int id, ModelMap quizModel) {
+	public String deleteQuiz(@PathVariable int id, HttpServletRequest request, ModelMap quizModel) {
+		HttpSession session = request.getSession();
+		if(session.isNew() || !session.getAttribute("role").equals("teacher")){
+			return "redirect:/";
+		}
 		quizService.deleteQuiz(id);
 		List<Quiz> quizs = quizService.getQuizs();
 		quizModel.addAttribute("quizs", quizs);
