@@ -33,16 +33,15 @@ public class TeacherController {
     @PostMapping("login")
     public String checkTeacher(@RequestParam(value = "email", required = true) String email,
                                @RequestParam(value = "password", required = true) String password,HttpServletRequest request, ModelMap model){
-        
-        if(teacherService.login(email,password)){
-        	HttpSession session = request.getSession();
-        	session.setAttribute("role", "teacher");
-        	model.addAttribute("success", "Login Successfully");
-        }
-        else{
+        Teacher teacher = teacherService.login(email,password);
+        if(teacher == null){
         	model.addAttribute("error", "Wrong credentials !!");
         	return "teacher/login_page";
         }
+        HttpSession session = request.getSession();
+        session.setAttribute("role", "teacher");
+        session.setAttribute("id",teacher.getId());
+        model.addAttribute("success", "Logged in Successfully");
         List<Quiz> quizzes = quizService.getQuizs();
     	model.addAttribute("quizzes", quizzes);
         return "teacher/home_page";

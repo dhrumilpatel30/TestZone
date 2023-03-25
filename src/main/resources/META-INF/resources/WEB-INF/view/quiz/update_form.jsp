@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Quiz Edit</title>
+<%@include file="../components/link.html" %>
+</head>
+<body>
+	<%@include file='../components/header.jsp' %>
+	<div class='w-50 mx-auto my-5'>
+		<form:form action="http://localhost:8080/quiz/update" modelAttribute="quiz" method="post">
+			<div class="mb-3">
+				<label for="title" class="form-label">Title</label>
+				<form:input path="quiz_title" type="text" cssClass="form-control" id='title' required="true"/>
+			</div>
+			<div class="mb-3">
+				<label for="duration" class="form-label">Duration</label>
+				<form:input path="duration" type="number" cssClass="form-control" id='duration' required="true"/>
+			</div>
+			<div class="mb-3">
+				<label for="subject" class="form-label">Subject</label>
+				<form:input path="subject" type="text" cssClass="form-control" id='subject' required="true"/>
+			</div>
+			<div class="mb-3">
+				<label for="total_max_marks" class="form-label">Max Marks</label>
+				<form:input path="total_max_marks" type="number" cssClass="form-control" id='total_max_marks' required="true"/>
+			</div>
+			<button class='w-100 btn btn-dark' type="submit">Submit</button>
+		</form:form>
+	</div>
+	<%@include file='../components/footer.html' %>
+</body>
+</html>

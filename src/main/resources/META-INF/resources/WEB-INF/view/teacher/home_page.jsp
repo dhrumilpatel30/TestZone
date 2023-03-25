@@ -12,16 +12,14 @@
 	</head>
 	<body>
 		<%@include file="../components/header.jsp"%>
-		<h2>Online Examination System</h2>
 		<c:if test="${not empty success}">
 		<div class="alert alert-success alert-dismissible fade show" role="alert">
 			${success}
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	</c:if>
-		<h3>Welcome ${teacherName} to online examination system</h3>
-		<%@include file="../components/footer.html"%>
-		<a href="quiz/addQuiz">Add a new Quiz</a >
+		<h5>Welcome ${teacherName} to online examination system</h5>
+		<a href="<%=request.getContextPath()%>/quiz/addQuiz">Add a new Quiz</a >
 	<c:choose>
 	<c:when test="${quizzes != null}">
 		<table cellpadding="5" cellspacing="5">
@@ -45,9 +43,9 @@
 						<td>${q.subject}</td>
 						<td>${q.total_max_marks}</td>
 						<td>${q.avg_score}</td>
-						<td<a href="quiz/${q.quiz_id}">View Quiz</td>
-						<td><a href="quiz/update/${q.quiz_id}">Update</a>
-							<a href="quiz/delete/${q.quiz_id}"
+						<td><a href="<%=request.getContextPath()%>/quiz/${q.quiz_id}">View Quiz</a></td>
+						<td><a href="<%=request.getContextPath()%>/quiz/update/${q.quiz_id}">Update</a>
+							<a href="<%=request.getContextPath()%>/quiz/delete/${q.quiz_id}"
 							   onclick="return confirm('You are Deleting ${q.quiz_title} Confirm?')">Delete</a>
 						</td>
 					</tr>
@@ -59,5 +57,6 @@
 	</c:otherwise>
 </c:choose>
 
+		<%@include file="../components/footer.html"%>
 	</body>
 </html>

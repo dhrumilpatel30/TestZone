@@ -27,18 +27,12 @@ public class TeacherDAO {
 		currentSession.close();
 		return teacher;
 	}
-	public boolean validate(String email,String password){
+	public Teacher validate(String email,String password){
 		Session currentSession = entityManager.unwrap(Session.class);
-		TypedQuery<Student> theQuery = currentSession.createQuery("from Teacher where email =:email and password =:pass", Student.class);
+		TypedQuery<Teacher> theQuery = currentSession.createQuery("from Teacher where email =:email and password =:pass", Teacher.class);
 		theQuery.setParameter("email", email);
 		theQuery.setParameter("pass", password);
-		
-		List<Student> students = theQuery.getResultList();
-		
-		if(students.isEmpty()) {
-			return false;
-		}
-		return true;
+		return theQuery.getSingleResult();
 	}
 	public List<Teacher> getTeachers() {
 		Session currentSession = entityManager.unwrap(Session.class);

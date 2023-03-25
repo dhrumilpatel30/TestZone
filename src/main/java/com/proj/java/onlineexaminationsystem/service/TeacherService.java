@@ -32,7 +32,7 @@ public class TeacherService {
 	public void deleteTeacher(final int id) {
 		teacherDAO.deleteTeacher(id);
 	}
-	public boolean login(String email,String password) {
+	public Teacher login(String email,String password) {
 		return teacherDAO.validate(email, password);
 	}
 }

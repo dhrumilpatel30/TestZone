@@ -114,4 +114,12 @@ public class Quiz {
     public void setAvg_score(int avg_score) {
         this.avg_score = avg_score;
     }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
 }
