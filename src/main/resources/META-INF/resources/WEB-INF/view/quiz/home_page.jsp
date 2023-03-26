@@ -20,33 +20,37 @@
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	</c:if>
-	<c:if test="${not empty msg}">
-		${msg}
-	</c:if>
-	<h2>Quiz's</h2>
+	<h2>Quiz</h2>
 	<br>
+	<a href="/addQuestion/${quiz.quiz_id}">Add Question</a>
 	<c:choose>
-	<c:when test="${quizzes != null}">
+	<c:when test="${questions != null}">
 		<table cellpadding="5" cellspacing="5">
 			<thead>
 				<tr>
-					<th>id</th>
-					<th>title</th>
-					<th>duration</th>
-					<th>Subject</th>
-					<th>maximum marks</th>
-					<th>avg score</th>
+					<th>question_id</th>
+					<th>quiz_id</th>
+					<th>question</th>
+					<th>option1</th>
+					<th>option2</th>
+					<th>option3</th>
+					<th>option4</th>
+					<th>correct_answer</th>
+					<th>max_marks</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="q" items="${quizzes}">
+				<c:forEach var="q" items="${questions}">
 					<tr>
+						<td>${q.question_id}</td>
 						<td>${q.quiz_id}</td>
-						<td>${q.quiz_title}</td>
-						<td>${q.duration} min</td>
-						<td>${q.subject}</td>
-						<td>${q.total_max_marks}</td>
-						<td>${q.avg_score}</td>
+						<td>${q.question}</td>
+						<td>${q.option1}</td>
+						<td>${q.option2}</td>
+						<td>${q.option3}</td>
+						<td>${q.option4}</td>
+						<td>${q.correct_answer}</td>
+						<td>${q.max_marks}</td>
 					</tr>
 				</c:forEach>
 			</tbody>

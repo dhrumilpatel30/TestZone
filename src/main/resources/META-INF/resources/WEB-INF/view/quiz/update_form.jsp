@@ -6,10 +6,18 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Quiz Edit</title>
+
 <%@include file="../components/link.html" %>
 </head>
 <body>
 	<%@include file='../components/header.jsp' %>
+
+	<c:if test="${not empty success}">
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+			${success}
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+	</c:if>
 	<div class='w-50 mx-auto my-5'>
 		<form:form action="http://localhost:8080/quiz/update" modelAttribute="quiz" method="post">
 			<div class="mb-3">

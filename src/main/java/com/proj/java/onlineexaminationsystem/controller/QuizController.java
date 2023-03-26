@@ -25,7 +25,7 @@ public class QuizController {
 		return "quiz/home_page";
 	}
 	@GetMapping("/addQuiz")
-	public String addPage(HttpServletRequest request, ModelMap quizModel) {
+	public String addQuiz(HttpServletRequest request, ModelMap quizModel) {
 		HttpSession session = request.getSession();
 		if(!session.isNew() && session.getAttribute("role").equals("teacher")){
 			Quiz quiz = new Quiz();
@@ -65,5 +65,4 @@ public class QuizController {
 			quizModel.addAttribute("msg", "Quiz deleted successfully");
 		}return "redirect:/";
 	}
-
 }
