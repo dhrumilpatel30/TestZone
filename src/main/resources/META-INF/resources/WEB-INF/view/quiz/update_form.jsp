@@ -20,6 +20,7 @@
 	</c:if>
 	<div class='w-50 mx-auto my-5'>
 		<form:form action="http://localhost:8080/quiz/update" modelAttribute="quiz" method="post">
+			<form:input path="quiz_id" value="${quiz.quiz_id}" type="hidden"/>
 			<div class="mb-3">
 				<label for="title" class="form-label">Title</label>
 				<form:input path="quiz_title" type="text" cssClass="form-control" id='title' required="true"/>

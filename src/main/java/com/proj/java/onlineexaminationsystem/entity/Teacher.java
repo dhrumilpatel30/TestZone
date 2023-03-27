@@ -101,7 +101,7 @@ public class Teacher {
 	@Override
 	public String toString() {
 		return "Teacher [id=" + id + ", name=" + name + ", email=" + email + ", date_of_birth=" + date_of_birth
-				+ ", gender=" + gender + ", quiz=" + quiz + "]";
+				+ ", gender=" + gender ;
 	}
 
 }

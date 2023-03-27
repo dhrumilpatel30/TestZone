@@ -54,6 +54,9 @@ public class QuestionDAO {
 	public void deleteQuestion(final int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		Question question = currentSession.get(Question.class, id);
+//		System.out.println(question);
+		question.setQuiz_id(null);
+		currentSession.persist(question);
 		currentSession.remove(question);
 		currentSession.close();
 

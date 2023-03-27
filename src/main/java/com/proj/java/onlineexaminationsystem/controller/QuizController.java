@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.proj.java.onlineexaminationsystem.entity.Quiz;
 import com.proj.java.onlineexaminationsystem.service.QuizService;
+import com.proj.java.onlineexaminationsystem.service.TeacherService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ public class QuizController {
 
 	@Autowired
 	private QuizService quizService;
+	@Autowired
+	private TeacherService teacherService;
 	@GetMapping("/{id}")
 	public String getQuiz(@PathVariable int id, ModelMap quizModel) {
 		Quiz quiz = quizService.getQuiz(id);
@@ -29,6 +32,7 @@ public class QuizController {
 		HttpSession session = request.getSession();
 		if(!session.isNew() && session.getAttribute("role").equals("teacher")){
 			Quiz quiz = new Quiz();
+			quizService.addQuiz(quiz);
 			quizModel.addAttribute("quiz", quiz);
 			return "quiz/update_form";
 		}
@@ -38,7 +42,6 @@ public class QuizController {
 	public String updatePage(@PathVariable("id") int id, ModelMap quizModel) {
 		quizModel.addAttribute("id", id);
 		Quiz quiz = quizService.getQuiz(id);
-		quizService.deleteQuiz(quiz.getQuiz_id());
 		quizModel.addAttribute("quiz", quiz);
 		return "quiz/update_form";
 	}
@@ -47,8 +50,9 @@ public class QuizController {
 	public String updateQuiz(@ModelAttribute("quiz") Quiz quiz, HttpServletRequest request, ModelMap quizModel) {
 		HttpSession session = request.getSession();
 		if(!session.isNew() && session.getAttribute("role").equals("teacher")) {
-			quizService.addQuiz(quiz);
-			List<Quiz> quizs = quizService.getQuizs();
+			int id = (int) session.getAttribute("id");
+			quiz.setTeacher_id(teacherService.getTeacher(id));
+			quizService.updateQuiz(quiz);
 		}
 		return "redirect:/";
 	}
@@ -58,7 +62,6 @@ public class QuizController {
 		HttpSession session = request.getSession();
 		if(!session.isNew() && session.getAttribute("role").equals("teacher")){
 			quizService.deleteQuiz(id);
-			List<Quiz> quizs = quizService.getQuizs();
 		}return "redirect:/";
 	}
 }

@@ -13,12 +13,12 @@ public class Quiz {
     @Column
     private int quiz_id;
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher_id;
-    @OneToMany(mappedBy="quiz_id",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="quiz_id", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     private List<Question> questions;
-    @OneToMany(mappedBy="quiz_id",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="quiz_id",cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     private List<Score> scores;
     @OneToMany(mappedBy="quiz_id",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     private List<Result> results;
@@ -36,9 +36,8 @@ public class Quiz {
     public Quiz() {
     }
 
-    public Quiz(int quiz_id, Teacher teacher_id, String quiz_title, String subject, String duration, int total_max_marks, int avg_score) {
+    public Quiz(int quiz_id,String quiz_title, String subject, String duration, int total_max_marks, int avg_score) {
         this.quiz_id = quiz_id;
-        this.teacher_id = teacher_id;
         this.quiz_title = quiz_title;
         this.subject = subject;
         this.duration = duration;
@@ -50,7 +49,6 @@ public class Quiz {
     public String toString() {
         return "Quiz{" +
                 "quiz_id=" + quiz_id +
-                ", teacher_id=" + teacher_id +
                 ", quiz_title='" + quiz_title + '\'' +
                 ", subject='" + subject + '\'' +
                 ", duration='" + duration + '\'' +

@@ -58,9 +58,11 @@ public class QuestionController {
 	@GetMapping("/delete/{id}")
 	public String deleteQuiz(@PathVariable int id, HttpServletRequest request, ModelMap questionModel) {
 		HttpSession session = request.getSession();
+		int quiz_id = questionService.getQuestion(id).getQuiz_id().getQuiz_id();
 		if(!session.isNew() && session.getAttribute("role").equals("teacher")){
 //			return "redirect:/";
+			System.out.println(id);
 			questionService.deleteQuestion(id);
-		}return "redirect:/quiz/"+questionService.getQuestion(id).getQuiz_id().getQuiz_id();
+		}return "redirect:/quiz/"+quiz_id;
 	}
 }

@@ -26,6 +26,7 @@ public class TeacherController {
     @RequestMapping("")
     public String showPage(ModelMap model) {
     	List<Quiz> quizzes = quizService.getQuizs();
+//        System.out.println(quizzes);
     	model.addAttribute("quizzes", quizzes);
     	return "teacher/home_page";
     }

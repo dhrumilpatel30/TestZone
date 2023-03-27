@@ -18,7 +18,6 @@
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	</c:if>
-		<h5>Welcome ${teacherName} to online examination system</h5>
 		<a href="<%=request.getContextPath()%>/quiz/addQuiz">Add a new Quiz</a >
 	<c:choose>
 	<c:when test="${quizzes != null}">

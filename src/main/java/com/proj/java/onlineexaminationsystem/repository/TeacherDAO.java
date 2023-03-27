@@ -29,10 +29,14 @@ public class TeacherDAO {
 	}
 	public Teacher validate(String email,String password){
 		Session currentSession = entityManager.unwrap(Session.class);
-		TypedQuery<Teacher> theQuery = currentSession.createQuery("from Teacher where email =:email and password =:pass", Teacher.class);
+		TypedQuery<Teacher> theQuery = currentSession.createQuery("from Teacher where email =:email and password =:pass",Teacher.class);
 		theQuery.setParameter("email", email);
 		theQuery.setParameter("pass", password);
-		return theQuery.getSingleResult();
+		try {
+			return theQuery.getSingleResult();
+		}catch (Exception e){
+			return null;
+		}
 	}
 	public List<Teacher> getTeachers() {
 		Session currentSession = entityManager.unwrap(Session.class);
