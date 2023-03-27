@@ -43,7 +43,7 @@
 				<c:forEach var="q" items="${questions}">
 					<tr>
 						<td>${q.question_id}</td>
-						<td>${q.quiz_id}</td>
+						<td>${q.quiz_id.quiz_title}</td>
 						<td>${q.question}</td>
 						<td>${q.option1}</td>
 						<td>${q.option2}</td>

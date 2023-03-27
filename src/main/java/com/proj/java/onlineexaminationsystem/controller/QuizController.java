@@ -49,8 +49,6 @@ public class QuizController {
 		if(!session.isNew() && session.getAttribute("role").equals("teacher")) {
 			quizService.addQuiz(quiz);
 			List<Quiz> quizs = quizService.getQuizs();
-			quizModel.addAttribute("quizs", quizs);
-			quizModel.addAttribute("success", "Quiz updated successfully");
 		}
 		return "redirect:/";
 	}
@@ -61,8 +59,6 @@ public class QuizController {
 		if(!session.isNew() && session.getAttribute("role").equals("teacher")){
 			quizService.deleteQuiz(id);
 			List<Quiz> quizs = quizService.getQuizs();
-			quizModel.addAttribute("quizs", quizs);
-			quizModel.addAttribute("success", "Quiz deleted successfully");
 		}return "redirect:/";
 	}
 }

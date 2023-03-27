@@ -13,6 +13,7 @@
 	<%@include file='../components/header.jsp' %>
 	<div class='w-50 mx-auto my-5'>
 		<form:form action="http://localhost:8080/question/update" modelAttribute="question" method="post">
+		<form:input path="question_id" value="${question.question_id}" type="hidden"/>
 			<div class="mb-3">
 				<label for="question" class="form-label">Full Question</label>
 				<form:input path="question" type="text" cssClass="form-control" id='question' required="true"/>

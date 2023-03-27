@@ -39,7 +39,6 @@ public class QuestionController {
 		questionModel.addAttribute("id", id);
 		Question question = questionService.getQuestion(id);
 		questionModel.addAttribute("question", question);
-		questionService.deleteQuestion(id);
 		session.setAttribute("quiz_id",question.getQuiz_id());
 		return "question/update_form";
 	}
@@ -51,9 +50,7 @@ public class QuestionController {
             question.setQuiz_id((Quiz) session.getAttribute("quiz_id"));
 			session.removeAttribute("quiz_id");
 			questionService.updateQuestion(question);
-			questionModel.addAttribute("quiz", question.getQuiz_id());
-			questionModel.addAttribute("questions",question.getQuiz_id().getQuestions());
-			questionModel.addAttribute("success", "Question updated successfully");
+			return "redirect:/quiz/"+question.getQuiz_id().getQuiz_id();
 		}
 		return "redirect:/";
 	}
@@ -62,10 +59,8 @@ public class QuestionController {
 	public String deleteQuiz(@PathVariable int id, HttpServletRequest request, ModelMap questionModel) {
 		HttpSession session = request.getSession();
 		if(!session.isNew() && session.getAttribute("role").equals("teacher")){
+//			return "redirect:/";
 			questionService.deleteQuestion(id);
-			List<Question> questions = questionService.getQuestions();
-			questionModel.addAttribute("questions", questions);
-			questionModel.addAttribute("success", "Question deleted successfully");
 		}return "redirect:/quiz/"+questionService.getQuestion(id).getQuiz_id().getQuiz_id();
 	}
 }
