@@ -11,7 +11,7 @@ public class HomeController {
     public String showPage(HttpServletRequest request) {
     	
     	HttpSession session = request.getSession();
-    	if(session.getAttribute("role") != null) {
+    	if(!session.isNew() && session.getAttribute("role") != null) {
 			if (session.getAttribute("role").equals("teacher")) {
 				return "redirect:/teacher";
 			}

@@ -23,29 +23,33 @@ public class StudentController {
 	QuizService quizService;
 	
     @RequestMapping("")
-    public String showPage(ModelMap model) {
-    	List<Quiz> quizzes = quizService.getQuizs();
-    	model.addAttribute("quizzes", quizzes);
-    	return "student/home_page";
+    public String showPage(HttpServletRequest request,ModelMap model) {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("role") != null) {
+            if(!session.getAttribute("role").equals("student"))return "redirect:/";
+        }
+        int student_id = (int) session.getAttribute("id");
+        Student student = studentService.getStudent(student_id);
+        model.addAttribute("quizzesCompleted", studentService.getCompletedQuizzes(student));
+        model.addAttribute("quizzesPending", studentService.getPendingQuizzes(student));
+        return "student/home_page";
     }
     
     @PostMapping("login")
     public String checkStudent(@RequestParam(value = "email", required = true) String email,
                                @RequestParam(value = "password", required = true) String password,HttpServletRequest request, ModelMap model){
         
-        if(studentService.login(email,password)){
-        	HttpSession session = request.getSession();
-        	session.setAttribute("role", "student");
-        	model.addAttribute("success", "Login Successfully");
-        }
-        else{
+        if(!studentService.login(email,password)){
         	model.addAttribute("error", "Wrong credentials !!");
         	return "student/login_page";
         }
         Student student = studentService.getStudentByEmail(email);
-    	model.addAttribute("quizzesCompleted", studentService.getCompletedQuizzes(student));
-    	model.addAttribute("quizzesPending", studentService.getPendingQuizzes(student));
-        model.addAttribute("success","Welcome "+student.getName());
+        HttpSession session = request.getSession();
+        session.setAttribute("role", "student");
+        session.setAttribute("id",student.getId());
+        model.addAttribute("msg","Login SuccessFull,Welcome");
+        model.addAttribute("quizzesCompleted", studentService.getCompletedQuizzes(student));
+        model.addAttribute("quizzesPending", studentService.getPendingQuizzes(student));
         return "student/home_page";
     }
     

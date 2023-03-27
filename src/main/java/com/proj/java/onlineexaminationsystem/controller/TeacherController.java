@@ -24,7 +24,11 @@ public class TeacherController {
 	QuizService quizService;
 	
     @RequestMapping("")
-    public String showPage(ModelMap model) {
+    public String showPage(ModelMap model,HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("role") != null) {
+            if(!session.getAttribute("role").equals("teacher"))return "redirect:/";
+        }
     	List<Quiz> quizzes = quizService.getQuizs();
 //        System.out.println(quizzes);
     	model.addAttribute("quizzes", quizzes);

@@ -67,10 +67,10 @@ public class ResultDAO {
 		TypedQuery<Result> theQuery = currentSession.createQuery("from Result where student_id=:s and quiz_id=:q", Result.class);
 		try {
 			theQuery.getSingleResult();
-			return false;
+			return true;
 		}
 		catch (Exception e){
-			return true;
+			return false;
 		}
 	}
 }

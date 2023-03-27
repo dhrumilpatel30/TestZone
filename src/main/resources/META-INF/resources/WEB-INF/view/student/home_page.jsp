@@ -20,11 +20,10 @@
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	</c:if>
-	<h4>Pending Quiz's</h4>
-	<br>
 	<c:choose>
 	<c:when test="${quizzesPending != null}">
-		<table cellpadding="5" cellspacing="5">
+	<h4>Pending Quiz's</h4>
+	<table cellpadding="5" cellspacing="5">
 			<thead>
 				<tr>
 					<th>id</th>
@@ -53,10 +52,10 @@
 	</c:when>
 </c:choose>
 
-	<h4>Completed Quiz's</h4>
 	<br>
 <c:choose>
 	<c:when test="${quizzesCompleted != null}">
+	<h4>Completed Quiz's</h4>
 		<table cellpadding="5" cellspacing="5">
 			<thead>
 				<tr>
