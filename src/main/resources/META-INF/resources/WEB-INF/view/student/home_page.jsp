@@ -20,13 +20,10 @@
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	</c:if>
-	<c:if test="${not empty msg}">
-		${msg}
-	</c:if>
-	<h2>Quiz's</h2>
+	<h4>Pending Quiz's</h4>
 	<br>
 	<c:choose>
-	<c:when test="${quizzes != null}">
+	<c:when test="${quizzesPending != null}">
 		<table cellpadding="5" cellspacing="5">
 			<thead>
 				<tr>
@@ -36,10 +33,11 @@
 					<th>Subject</th>
 					<th>maximum marks</th>
 					<th>avg score</th>
+					<th>Give Test</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="q" items="${quizzes}">
+				<c:forEach var="q" items="${quizzesPending}">
 					<tr>
 						<td>${q.quiz_id}</td>
 						<td>${q.quiz_title}</td>
@@ -47,17 +45,46 @@
 						<td>${q.subject}</td>
 						<td>${q.total_max_marks}</td>
 						<td>${q.avg_score}</td>
+						<td><a href="#">Start Quiz</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</c:when>
-	<c:otherwise>
-	No Quiz found,
-		Enjoy :)
-	</c:otherwise>
 </c:choose>
 
+	<h4>Completed Quiz's</h4>
+	<br>
+<c:choose>
+	<c:when test="${quizzesCompleted != null}">
+		<table cellpadding="5" cellspacing="5">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>title</th>
+					<th>duration</th>
+					<th>Subject</th>
+					<th>maximum marks</th>
+					<th>avg score</th>
+					<th>Result</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="q" items="${quizzesCompleted}">
+					<tr>
+						<td>${q.quiz_id}</td>
+						<td>${q.quiz_title}</td>
+						<td>${q.duration} min</td>
+						<td>${q.subject}</td>
+						<td>${q.total_max_marks}</td>
+						<td>${q.avg_score}</td>
+						<td><a href="#">View Result</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</c:when>
+</c:choose>
 
 	<%@include file="../components/footer.html"%>
 </body>

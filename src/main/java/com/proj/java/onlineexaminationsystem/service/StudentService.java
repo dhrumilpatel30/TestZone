@@ -1,10 +1,13 @@
 package com.proj.java.onlineexaminationsystem.service;
 
+import com.proj.java.onlineexaminationsystem.entity.Quiz;
 import com.proj.java.onlineexaminationsystem.entity.Student;
+import com.proj.java.onlineexaminationsystem.repository.QuizDAO;
 import com.proj.java.onlineexaminationsystem.repository.StudentDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -12,7 +15,8 @@ public class StudentService {
 
 	@Autowired
 	private StudentDAO studentDAO;
-
+	@Autowired
+	private QuizDAO quizDAO;
 	public Student getStudent(final int id) {
 		return studentDAO.getStudent(id);
 	}
@@ -39,5 +43,17 @@ public class StudentService {
 	public boolean login(String email,String password) {
 		return studentDAO.validate(email, password);
 	}
+
+//	public List<Quiz> getCompletedQuizzes(final Student student){
+//		List<Quiz> quizzes = new ArrayList<>();
+//
+//		return quizzes;
+//	}
+//
+//	public List<Quiz> getPendingQuizzes(final Student student){
+//		List<Quiz> quizzes = new ArrayList<>();
+//		for (Quiz )
+//		return quizzes;
+//	}
 
 }

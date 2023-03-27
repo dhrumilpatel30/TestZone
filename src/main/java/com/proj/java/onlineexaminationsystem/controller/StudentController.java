@@ -42,9 +42,9 @@ public class StudentController {
         	model.addAttribute("error", "Wrong credentials !!");
         	return "student/login_page";
         }
-        List<Quiz> quizzes = quizService.getQuizs();
         Student student = studentService.getStudentByEmail(email);
-    	model.addAttribute("quizzes", quizzes);
+//    	model.addAttribute("quizzesCompleted", studentService.getCompletedQuizzes(student));
+//    	model.addAttribute("quizzesPending", studentService.getPendingQuizzes(student));
         model.addAttribute("success","Welcome "+student.getName());
         return "student/home_page";
     }
