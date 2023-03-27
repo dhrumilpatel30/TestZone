@@ -26,6 +26,7 @@ public class QuestionController {
 		HttpSession session = request.getSession();
 		if(!session.isNew() && session.getAttribute("role").equals("teacher")){
 			Question question = new Question();
+			question.setQuiz_id(quizService.getQuiz(id));
 			questionService.addQuestion(question);
 			questionModel.addAttribute("question", question);
 			session.setAttribute("quiz_id",quizService.getQuiz(id));
@@ -48,9 +49,10 @@ public class QuestionController {
 		HttpSession session = request.getSession();
 		if(!session.isNew() && session.getAttribute("role").equals("teacher")) {
             question.setQuiz_id((Quiz) session.getAttribute("quiz_id"));
-			session.removeAttribute("quiz_id");
 			questionService.updateQuestion(question);
-			return "redirect:/quiz/"+question.getQuiz_id().getQuiz_id();
+			int quiz_id = question.getQuiz_id().getQuiz_id();
+			session.removeAttribute("quiz_id");
+			return "redirect:/quiz/"+quiz_id;
 		}
 		return "redirect:/";
 	}
@@ -61,7 +63,6 @@ public class QuestionController {
 		int quiz_id = questionService.getQuestion(id).getQuiz_id().getQuiz_id();
 		if(!session.isNew() && session.getAttribute("role").equals("teacher")){
 //			return "redirect:/";
-			System.out.println(id);
 			questionService.deleteQuestion(id);
 		}return "redirect:/quiz/"+quiz_id;
 	}

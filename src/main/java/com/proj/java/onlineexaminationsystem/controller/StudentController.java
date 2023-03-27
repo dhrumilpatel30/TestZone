@@ -19,7 +19,6 @@ public class StudentController {
 	
 	@Autowired
 	StudentService studentService;
-	
 	@Autowired
 	QuizService quizService;
 	

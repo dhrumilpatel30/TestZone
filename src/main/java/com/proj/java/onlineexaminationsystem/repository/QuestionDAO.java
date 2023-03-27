@@ -2,8 +2,11 @@ package com.proj.java.onlineexaminationsystem.repository;
 
 import com.proj.java.onlineexaminationsystem.entity.Question;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
+import org.hibernate.query.MutationQuery;
+import org.hibernate.query.NativeQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,12 +57,10 @@ public class QuestionDAO {
 	public void deleteQuestion(final int id) {
 		Session currentSession = entityManager.unwrap(Session.class);
 		Question question = currentSession.get(Question.class, id);
-//		System.out.println(question);
-		question.setQuiz_id(null);
-		currentSession.persist(question);
-		currentSession.remove(question);
+		MutationQuery theQuery = currentSession.createMutationQuery("delete Question where question_id =:i");
+		theQuery.setParameter("i",id);
+		theQuery.executeUpdate();
 		currentSession.close();
-
 	}
 }
 

@@ -26,17 +26,17 @@
 				<form:input path="quiz_title" type="text" cssClass="form-control" id='title' required="true"/>
 			</div>
 			<div class="mb-3">
-				<label for="duration" class="form-label">Duration</label>
+				<label for="duration" class="form-label">Duration(in min)</label>
 				<form:input path="duration" type="number" cssClass="form-control" id='duration' required="true"/>
 			</div>
 			<div class="mb-3">
 				<label for="subject" class="form-label">Subject</label>
 				<form:input path="subject" type="text" cssClass="form-control" id='subject' required="true"/>
 			</div>
-			<div class="mb-3">
-				<label for="total_max_marks" class="form-label">Max Marks</label>
-				<form:input path="total_max_marks" type="number" cssClass="form-control" id='total_max_marks' required="true"/>
-			</div>
+<%--			<div class="mb-3">--%>
+<%--				<label for="total_max_marks" class="form-label">Max Marks</label>--%>
+				<form:input path="total_max_marks" type="hidden" value="${quiz.total_max_marks}" id='total_max_marks'/>
+<%--			</div>--%>
 			<button class='w-100 btn btn-dark' type="submit">Submit</button>
 		</form:form>
 	</div>

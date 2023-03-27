@@ -23,6 +23,7 @@ public class QuizController {
 	@GetMapping("/{id}")
 	public String getQuiz(@PathVariable int id, ModelMap quizModel) {
 		Quiz quiz = quizService.getQuiz(id);
+		quizService.updateQuizMarks(id);
 		quizModel.addAttribute("quiz", quiz);
 		quizModel.addAttribute("questions",quiz.getQuestions());
 		return "quiz/home_page";

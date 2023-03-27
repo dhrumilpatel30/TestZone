@@ -55,10 +55,9 @@ public class QuizDAO {
 		Session currentSession = entityManager.unwrap(Session.class);
 		Quiz quiz = currentSession.get(Quiz.class, id);
 		quiz.setTeacher_id(null);
-		currentSession.persist(quiz);
+		currentSession.merge(quiz);
 		currentSession.remove(quiz);
 		currentSession.close();
-
 	}
 }
 

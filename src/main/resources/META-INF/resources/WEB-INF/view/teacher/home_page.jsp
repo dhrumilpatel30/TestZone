@@ -30,7 +30,9 @@
 					<th>Subject</th>
 					<th>maximum marks</th>
 					<th>avg score</th>
-					<th>Edit</th>
+					<th>Created By</th>
+					<th>Edit Questions</th>
+					<th>Edit Quiz</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -42,10 +44,11 @@
 						<td>${q.subject}</td>
 						<td>${q.total_max_marks}</td>
 						<td>${q.avg_score}</td>
-						<td><a href="<%=request.getContextPath()%>/quiz/${q.quiz_id}">View Quiz</a></td>
-						<td><a href="<%=request.getContextPath()%>/quiz/update/${q.quiz_id}">Update</a>
+						<td>${q.teacher_id.name}</td>
+						<td><a href="<%=request.getContextPath()%>/quiz/${q.quiz_id}">Edit Questions</a></td>
+						<td><a href="<%=request.getContextPath()%>/quiz/update/${q.quiz_id}">Update Quiz</a>
 							<a href="<%=request.getContextPath()%>/quiz/delete/${q.quiz_id}"
-							   onclick="return confirm('You are Deleting ${q.quiz_title} Confirm?')">Delete</a>
+							   onclick="return confirm('You are Deleting ${q.quiz_title} Confirm?')">Delete Quiz</a>
 						</td>
 					</tr>
 				</c:forEach>

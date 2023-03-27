@@ -2,6 +2,7 @@ package com.proj.java.onlineexaminationsystem.service;
 
 import com.proj.java.onlineexaminationsystem.entity.Question;
 import com.proj.java.onlineexaminationsystem.repository.QuestionDAO;
+import com.proj.java.onlineexaminationsystem.repository.QuizDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
