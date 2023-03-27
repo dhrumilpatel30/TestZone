@@ -16,11 +16,11 @@ public class Quiz {
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher_id;
-    @OneToMany(mappedBy="quiz_id",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="quiz_id",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     private List<Question> questions;
-    @OneToMany(mappedBy="quiz_id",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="quiz_id",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     private List<Score> scores;
-    @OneToMany(mappedBy="quiz_id",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="quiz_id",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     private List<Result> results;
     @Column
     private String quiz_title;

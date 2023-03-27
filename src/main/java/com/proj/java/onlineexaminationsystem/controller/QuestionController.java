@@ -18,24 +18,29 @@ import org.springframework.web.bind.annotation.*;
 public class QuestionController {
     @Autowired
     private QuestionService questionService;
+    @Autowired
+    private QuizService quizService;
 
 	@GetMapping("/addQuestion/{id}")
 	public String addQuiz(@PathVariable("id") int id, HttpServletRequest request, ModelMap questionModel) {
 		HttpSession session = request.getSession();
 		if(!session.isNew() && session.getAttribute("role").equals("teacher")){
 			Question question = new Question();
+			questionService.addQuestion(question);
 			questionModel.addAttribute("question", question);
-			questionModel.addAttribute("quiz_id", id);
+			session.setAttribute("quiz_id",quizService.getQuiz(id));
 			return "question/update_form";
 		}
 		return "redirect:/";
 	}
 	@GetMapping("/update/{id}")
-	public String updatePage(@PathVariable("id") int id, ModelMap questionModel) {
+	public String updatePage(@PathVariable("id") int id, ModelMap questionModel,HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		questionModel.addAttribute("id", id);
 		Question question = questionService.getQuestion(id);
-		questionService.deleteQuestion(question.getQuestion_id());
 		questionModel.addAttribute("question", question);
+		questionService.deleteQuestion(id);
+		session.setAttribute("quiz_id",question.getQuiz_id());
 		return "question/update_form";
 	}
 
@@ -43,12 +48,14 @@ public class QuestionController {
 	public String updateQuiz(@ModelAttribute("question") Question question, HttpServletRequest request, ModelMap questionModel) {
 		HttpSession session = request.getSession();
 		if(!session.isNew() && session.getAttribute("role").equals("teacher")) {
-			questionService.addQuestion(question);
+            question.setQuiz_id((Quiz) session.getAttribute("quiz_id"));
+			session.removeAttribute("quiz_id");
+			questionService.updateQuestion(question);
 			questionModel.addAttribute("quiz", question.getQuiz_id());
 			questionModel.addAttribute("questions",question.getQuiz_id().getQuestions());
 			questionModel.addAttribute("success", "Question updated successfully");
 		}
-		return "quiz/home_page";
+		return "redirect:/";
 	}
 
 	@GetMapping("/delete/{id}")
@@ -59,6 +66,6 @@ public class QuestionController {
 			List<Question> questions = questionService.getQuestions();
 			questionModel.addAttribute("questions", questions);
 			questionModel.addAttribute("success", "Question deleted successfully");
-		}return "redirect:/";
+		}return "redirect:/quiz/"+questionService.getQuestion(id).getQuiz_id().getQuiz_id();
 	}
 }

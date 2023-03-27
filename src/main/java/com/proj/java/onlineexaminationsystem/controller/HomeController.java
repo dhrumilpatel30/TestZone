@@ -15,9 +15,9 @@ public class HomeController {
 			if (session.getAttribute("role").equals("teacher")) {
 				return "redirect:/teacher";
 			}
-			return "redirect:/student/login";
+			return "redirect:/student";
 		}
-    	return "redirect:/student";
+		return "redirect:/student/login";
     }
     
     @RequestMapping("logout")
