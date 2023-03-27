@@ -22,7 +22,7 @@
 	</c:if>
 	<h2>Quiz</h2>
 	<br>
-	<a href="/addQuestion/${quiz.quiz_id}">Add Question</a>
+	<a href="/question/addQuestion/${quiz.quiz_id}">Add Question</a>
 	<c:choose>
 	<c:when test="${questions != null}">
 		<table cellpadding="5" cellspacing="5">
@@ -51,14 +51,17 @@
 						<td>${q.option4}</td>
 						<td>${q.correct_answer}</td>
 						<td>${q.max_marks}</td>
+						<td><a href="<%=request.getContextPath()%>/question/update/${q.question_id}">Update</a>
+							<a href="<%=request.getContextPath()%>/question/delete/${q.question_id}"
+							   onclick="return confirm('You are Deleting ${q.question} Confirm?')">Delete</a>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</c:when>
 	<c:otherwise>
-	No Quiz found,
-		Enjoy :)
+	No Questions added!<br>
 	</c:otherwise>
 </c:choose>
 

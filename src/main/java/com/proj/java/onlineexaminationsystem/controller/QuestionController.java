@@ -16,18 +16,16 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/question")
 public class QuestionController {
-
-	@Autowired
-	private QuizService quizService;
     @Autowired
     private QuestionService questionService;
 
-	@GetMapping("/addQuestion")
-	public String addQuiz(HttpServletRequest request, ModelMap questionModel) {
+	@GetMapping("/addQuestion/{id}")
+	public String addQuiz(@PathVariable("id") int id, HttpServletRequest request, ModelMap questionModel) {
 		HttpSession session = request.getSession();
 		if(!session.isNew() && session.getAttribute("role").equals("teacher")){
 			Question question = new Question();
 			questionModel.addAttribute("question", question);
+			questionModel.addAttribute("quiz_id", id);
 			return "question/update_form";
 		}
 		return "redirect:/";
@@ -52,15 +50,15 @@ public class QuestionController {
 		}
 		return "quiz/home_page";
 	}
-//
-//	@GetMapping("/delete/{id}")
-//	public String deleteQuiz(@PathVariable int id, HttpServletRequest request, ModelMap quizModel) {
-//		HttpSession session = request.getSession();
-//		if(!session.isNew() && session.getAttribute("role").equals("teacher")){
-//			quizService.deleteQuiz(id);
-//			List<Quiz> quizs = quizService.getQuizs();
-//			quizModel.addAttribute("quizs", quizs);
-//			quizModel.addAttribute("msg", "Quiz deleted successfully");
-//		}return "redirect:/";
-//	}
+
+	@GetMapping("/delete/{id}")
+	public String deleteQuiz(@PathVariable int id, HttpServletRequest request, ModelMap questionModel) {
+		HttpSession session = request.getSession();
+		if(!session.isNew() && session.getAttribute("role").equals("teacher")){
+			questionService.deleteQuestion(id);
+			List<Question> questions = questionService.getQuestions();
+			questionModel.addAttribute("questions", questions);
+			questionModel.addAttribute("success", "Question deleted successfully");
+		}return "redirect:/";
+	}
 }

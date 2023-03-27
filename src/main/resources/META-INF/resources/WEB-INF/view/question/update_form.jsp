@@ -16,7 +16,8 @@
 				<label for="question" class="form-label">question</label>
 				<form:input path="question" type="text" cssClass="form-control" id='question' required="true"/>
 			</div>
-			<div class="mb-3">
+			<form:input path="quiz_id" type="hidden" value="${quiz_id}"/>
+ 			<div class="mb-3">
 				<label for="option1" class="form-label">option1</label>
 				<form:input path="option1" type="text" cssClass="form-control" id='option1' required="true"/>
 			<div class="mb-3">

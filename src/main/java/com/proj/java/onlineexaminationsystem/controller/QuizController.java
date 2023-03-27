@@ -50,7 +50,7 @@ public class QuizController {
 			quizService.addQuiz(quiz);
 			List<Quiz> quizs = quizService.getQuizs();
 			quizModel.addAttribute("quizs", quizs);
-			quizModel.addAttribute("msg", "Quiz updated successfully");
+			quizModel.addAttribute("success", "Quiz updated successfully");
 		}
 		return "redirect:/";
 	}
@@ -62,7 +62,7 @@ public class QuizController {
 			quizService.deleteQuiz(id);
 			List<Quiz> quizs = quizService.getQuizs();
 			quizModel.addAttribute("quizs", quizs);
-			quizModel.addAttribute("msg", "Quiz deleted successfully");
+			quizModel.addAttribute("success", "Quiz deleted successfully");
 		}return "redirect:/";
 	}
 }

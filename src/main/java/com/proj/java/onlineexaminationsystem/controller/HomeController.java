@@ -11,11 +11,12 @@ public class HomeController {
     public String showPage(HttpServletRequest request) {
     	
     	HttpSession session = request.getSession();
-    	if(session.getAttribute("role").equals("")) {
-    		return "redirect:/student/login";
-    	}else if(session.getAttribute("role").equals("teacher")) {
-    		return "redirect:/teacher";
-    	}
+    	if(session.getAttribute("role") != null) {
+			if (session.getAttribute("role").equals("teacher")) {
+				return "redirect:/teacher";
+			}
+			return "redirect:/student/login";
+		}
     	return "redirect:/student";
     }
     
