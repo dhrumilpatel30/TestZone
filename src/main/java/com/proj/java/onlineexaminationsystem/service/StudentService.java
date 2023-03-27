@@ -3,6 +3,7 @@ package com.proj.java.onlineexaminationsystem.service;
 import com.proj.java.onlineexaminationsystem.entity.Quiz;
 import com.proj.java.onlineexaminationsystem.entity.Student;
 import com.proj.java.onlineexaminationsystem.repository.QuizDAO;
+import com.proj.java.onlineexaminationsystem.repository.ResultDAO;
 import com.proj.java.onlineexaminationsystem.repository.StudentDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ public class StudentService {
 	private StudentDAO studentDAO;
 	@Autowired
 	private QuizDAO quizDAO;
+	@Autowired
+	private ResultDAO resultDAO;
 	public Student getStudent(final int id) {
 		return studentDAO.getStudent(id);
 	}
@@ -44,16 +47,24 @@ public class StudentService {
 		return studentDAO.validate(email, password);
 	}
 
-//	public List<Quiz> getCompletedQuizzes(final Student student){
-//		List<Quiz> quizzes = new ArrayList<>();
-//
-//		return quizzes;
-//	}
-//
-//	public List<Quiz> getPendingQuizzes(final Student student){
-//		List<Quiz> quizzes = new ArrayList<>();
-//		for (Quiz )
-//		return quizzes;
-//	}
+	public List<Quiz> getCompletedQuizzes(final Student student){
+		List<Quiz> quizzes = new ArrayList<>();
+		for (Quiz q:quizDAO.getQuizs()){
+			if(resultDAO.isResultPresent(student,q)){
+				quizzes.add(q);
+			}
+		}
+		return quizzes;
+	}
+
+	public List<Quiz> getPendingQuizzes(final Student student){
+		List<Quiz> quizzes = new ArrayList<>();
+		for (Quiz q:quizDAO.getQuizs()){
+			if(!resultDAO.isResultPresent(student,q)){
+				quizzes.add(q);
+			}
+		}
+		return quizzes;
+	}
 
 }

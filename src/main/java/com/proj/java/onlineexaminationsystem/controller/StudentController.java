@@ -43,8 +43,8 @@ public class StudentController {
         	return "student/login_page";
         }
         Student student = studentService.getStudentByEmail(email);
-//    	model.addAttribute("quizzesCompleted", studentService.getCompletedQuizzes(student));
-//    	model.addAttribute("quizzesPending", studentService.getPendingQuizzes(student));
+    	model.addAttribute("quizzesCompleted", studentService.getCompletedQuizzes(student));
+    	model.addAttribute("quizzesPending", studentService.getPendingQuizzes(student));
         model.addAttribute("success","Welcome "+student.getName());
         return "student/home_page";
     }

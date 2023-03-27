@@ -32,5 +32,4 @@ public class ResultService {
 	public void deleteResult(final int id) {
 		resultDAO.deleteResult(id);
 	}
-
 }

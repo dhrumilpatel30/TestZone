@@ -1,6 +1,8 @@
 package com.proj.java.onlineexaminationsystem.repository;
 
+import com.proj.java.onlineexaminationsystem.entity.Quiz;
 import com.proj.java.onlineexaminationsystem.entity.Result;
+import com.proj.java.onlineexaminationsystem.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
@@ -57,6 +59,19 @@ public class ResultDAO {
 		currentSession.remove(result);
 		currentSession.close();
 
+	}
+
+	@Transactional
+	public boolean isResultPresent(Student student, Quiz quiz){
+		Session currentSession = entityManager.unwrap(Session.class);
+		TypedQuery<Result> theQuery = currentSession.createQuery("from Result where student_id=:s and quiz_id=:q", Result.class);
+		try {
+			theQuery.getSingleResult();
+			return false;
+		}
+		catch (Exception e){
+			return true;
+		}
 	}
 }
 
