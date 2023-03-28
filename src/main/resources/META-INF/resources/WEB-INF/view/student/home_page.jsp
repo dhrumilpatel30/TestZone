@@ -31,6 +31,7 @@
 					<th>duration</th>
 					<th>Subject</th>
 					<th>maximum marks</th>
+					<th>Passing Marks</th>
 					<th>avg score</th>
 					<th>Give Test</th>
 				</tr>
@@ -43,6 +44,7 @@
 						<td>${q.duration} min</td>
 						<td>${q.subject}</td>
 						<td>${q.total_max_marks}</td>
+						<td>${q.passing_marks}</td>
 						<td>${q.avg_score}</td>
 						<td><a href="<%=
 						request.getContextPath()
@@ -79,7 +81,9 @@
 						<td>${q.subject}</td>
 						<td>${q.total_max_marks}</td>
 						<td>${q.avg_score}</td>
-						<td><a href="#">View Result</a></td>
+						<td><a href=""<%=
+						request.getContextPath()
+						%>/exam/showResult/${q.quiz_id}"">View Result</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

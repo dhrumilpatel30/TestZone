@@ -48,11 +48,12 @@ public class ScoreService {
 		List<Question> questions = quiz.getQuestions();
 		List<Score> scores = new ArrayList<>();
 		for (Question q : questions){
-			System.out.println("\n\n\n\n\\n\\n\n\n\n\n\n\n\\n\n\n\n"+q+"\n\n\n\n\n\n\n\n\n\n\n");
+//			System.out.println("\n\n\n\n\\n\\n\n\n\n\n\n\n\\n\n\n\n"+q+"\n\n\n\n\n\n\n\n\n\n\n");
 			Score s = new Score();
 			s.setQuestion_id(q);
 			s.setQuiz_id(quiz);
 			s.setStudent_id(student);
+			s.setScore("-1");
 			scoreDAO.addScore(s);
 			scores.add(scoreDAO.getScore(s.getScore_id()));
 		}
@@ -67,6 +68,7 @@ public class ScoreService {
 			s1.setScore(s.getScore());
 			scoreDAO.updateScore(s1);
 //			Score s1 = scoreDAO.getScore(s.getScore_id());
+			s1.setChoosen_answer(s1.getScore());
 			if(s1.getQuestion_id().getCorrect_answer().equals(s1.getScore())){
 				s1.setScore(String.valueOf(s1.getQuestion_id().getMax_marks()));
 			}
@@ -79,6 +81,11 @@ public class ScoreService {
 		result.setStudent_id(s.getStudent_id());
 		result.setQuiz_id(s.getQuiz_id());
 		return result;
+	}
+	public List<Score> getResultScores(final int student_id, final int quiz_id){
+		Student student = studentDAO.getStudent(student_id);
+		Quiz quiz = quizDAO.getQuiz(quiz_id);
+		return scoreDAO.getScoresByStudent(student,quiz);
 	}
 
 }

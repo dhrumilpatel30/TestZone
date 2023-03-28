@@ -56,7 +56,19 @@ public class ScoreDAO {
 		Score score = currentSession.get(Score.class, id);
 		currentSession.remove(score);
 		currentSession.close();
-
+	}
+	@Transactional
+	public List<Score> getScoresByStudent(final Student student,final Quiz quiz){
+		Session currentSession = entityManager.unwrap(Session.class);
+		TypedQuery<Score> theQuery = currentSession.createQuery("from Score where student_id=:s and quiz_id=:q", Score.class);
+		theQuery.setParameter("s",student);
+		theQuery.setParameter("q",quiz);
+		try {
+			return theQuery.getResultList();
+		}
+		catch (Exception e){
+			return null;
+		}
 	}
 
 }

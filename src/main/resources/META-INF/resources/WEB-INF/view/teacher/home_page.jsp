@@ -29,6 +29,7 @@
 					<th>duration</th>
 					<th>Subject</th>
 					<th>maximum marks</th>
+					<th>Passing Marks</th>
 					<th>avg score</th>
 					<th>Created By</th>
 					<th>Edit Questions</th>
@@ -43,6 +44,7 @@
 						<td>${q.duration} min</td>
 						<td>${q.subject}</td>
 						<td>${q.total_max_marks}</td>
+						<td>${q.passing_marks}</td>
 						<td>${q.avg_score}</td>
 						<td>${q.teacher_id.name}</td>
 						<td><a href="<%=request.getContextPath()%>/quiz/${q.quiz_id}">Edit Questions</a></td>

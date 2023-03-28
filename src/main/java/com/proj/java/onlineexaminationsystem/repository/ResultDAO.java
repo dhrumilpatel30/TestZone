@@ -75,5 +75,18 @@ public class ResultDAO {
 			return false;
 		}
 	}
+	@Transactional
+	public Result getResultByStudent(Student student,Quiz quiz){
+		Session currentSession = entityManager.unwrap(Session.class);
+		TypedQuery<Result> theQuery = currentSession.createQuery("from Result where student_id=:s and quiz_id=:q", Result.class);
+		theQuery.setParameter("s",student);
+		theQuery.setParameter("q",quiz);
+		try {
+			return theQuery.getSingleResult();
+		}
+		catch (Exception e){
+			return null;
+		}
+	}
 }
 

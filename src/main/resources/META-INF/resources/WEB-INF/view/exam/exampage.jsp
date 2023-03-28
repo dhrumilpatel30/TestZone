@@ -22,6 +22,7 @@
             Quiz Title: ${quiz.quiz_title}<br>
             Quiz Duration: ${quiz.duration} min <br>
             Quiz Total Maximum Marks: ${quiz.total_max_marks}<br>
+            Quiz Total Maximum Marks: ${quiz.passing_marks}<br>
         </p><br>
     </c:if>
 	<c:choose>

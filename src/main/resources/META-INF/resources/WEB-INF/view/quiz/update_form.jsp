@@ -33,6 +33,10 @@
 				<label for="subject" class="form-label">Subject</label>
 				<form:input path="subject" type="text" cssClass="form-control" id='subject' required="true"/>
 			</div>
+			<div class="mb-3">
+				<label for="passing_marks" class="form-label">Passing Marks</label>
+				<form:input path="passing_marks" type="text" cssClass="form-control" id='passing_marks' required="true"/>
+			</div>
 <%--			<div class="mb-3">--%>
 <%--				<label for="total_max_marks" class="form-label">Max Marks</label>--%>
 				<form:input path="total_max_marks" type="hidden" value="${quiz.total_max_marks}" id='total_max_marks'/>

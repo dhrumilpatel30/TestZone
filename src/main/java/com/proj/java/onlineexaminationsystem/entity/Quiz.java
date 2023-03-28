@@ -2,6 +2,7 @@ package com.proj.java.onlineexaminationsystem.entity;
 
 
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -32,6 +33,8 @@ public class Quiz {
     private int total_max_marks;
     @Column
     private int avg_score;
+    @Column
+    private int passing_marks;
 
     public Quiz() {
     }
@@ -119,5 +122,13 @@ public class Quiz {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    public int getPassing_marks() {
+        return passing_marks;
+    }
+
+    public void setPassing_marks(int passing_marks) {
+        this.passing_marks = passing_marks;
     }
 }

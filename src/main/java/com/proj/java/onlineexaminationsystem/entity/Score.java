@@ -24,6 +24,8 @@ public class Score {
 
     @Column
     private String score;
+    @Column
+    private String choosen_answer;
 
     public Score() {
     }
@@ -77,5 +79,13 @@ public class Score {
                 ", student_id=" + student_id +
                 ", score=" + score +
                 '}';
+    }
+
+    public String getChoosen_answer() {
+        return choosen_answer;
+    }
+
+    public void setChoosen_answer(String choosen_answer) {
+        this.choosen_answer = choosen_answer;
     }
 }

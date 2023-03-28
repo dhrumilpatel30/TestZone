@@ -20,7 +20,16 @@
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	</c:if>
-	<h2>Quiz</h2>
+	<h2>Quiz</h2
+		<c:if test="${quiz != null}">
+        <p>
+            Quiz Details:<br>
+            Quiz Title: ${quiz.quiz_title}<br>
+            Quiz Duration: ${quiz.duration} min <br>
+            Quiz Total Maximum Marks: ${quiz.total_max_marks}<br>
+            Quiz Total Maximum Marks: ${quiz.passing_marks}<br>
+        </p><br>
+    </c:if>
 	<br>
 	<a href="/question/addQuestion/${quiz.quiz_id}">Add Question</a>
 	<c:choose>

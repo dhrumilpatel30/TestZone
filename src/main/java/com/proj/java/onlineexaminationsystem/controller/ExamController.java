@@ -34,8 +34,7 @@ public class ExamController{
         if(!session.isNew() && session.getAttribute("role") != null){
             if(session.getAttribute("role").equals("student")) {
                 List<Score> scoreList = scoreService.getExamQuestions((int)session.getAttribute("id"),id);
-
-			System.out.println("\n\n\n\n\\n\\n\n\n\n\n\n\n\\n\n\n\n"+scoreList+"\n\n\n\n\n\n\n\n\n\n\n");
+//			System.out.println("\n\n\n\n\\n\\n\n\n\n\n\n\n\\n\n\n\n"+scoreList+"\n\n\n\n\n\n\n\n\n\n\n");
                 ScoreList scores = new ScoreList(scoreList);
                 examModel.addAttribute("scores",scores);
                 examModel.addAttribute("quiz",quizService.getQuiz(id));
@@ -45,38 +44,25 @@ public class ExamController{
         return "redirect:/";
 	}
 	@PostMapping("/calculateResult")
-	public String addQuiz(HttpServletRequest request, ModelMap examModel, @ModelAttribute("questions") ScoreList scores) {
+	public String calculateResult(HttpServletRequest request, ModelMap examModel, @ModelAttribute("questions") ScoreList scores) {
         Result result = scoreService.getResult(scores.getScores());
-
-			System.out.println("\n\n\n\n\\n\\n\n\n\n\n\n\n\\n\n\n\n"+scores.getScores()+"\n\n\n\n\n\n\n\n\n\n\n");
+//			System.out.println("\n\n\n\n\\n\\n\n\n\n\n\n\n\\n\n\n\n"+scores.getScores()+"\n\n\n\n\n\n\n\n\n\n\n");
         resultService.addResult(result);
         examModel.addAttribute("result",result);
-        return "redirect:/";
+        examModel.addAttribute("scores",scoreService.getResultScores(
+                result.getStudent_id().getId(),result.getQuiz_id().getQuiz_id()));
+        return "exam/showresult";
 	}
-//	@GetMapping("/update/{id}")
-//	public String updatePage(@PathVariable("id") int id, ModelMap quizModel) {
-//		quizModel.addAttribute("id", id);
-//		Quiz quiz = quizService.getQuiz(id);
-//		quizModel.addAttribute("quiz", quiz);
-//		return "quiz/update_form";
-//	}
-//
-//	@PostMapping("/update")
-//	public String updateQuiz(@ModelAttribute("quiz") Quiz quiz, HttpServletRequest request, ModelMap quizModel) {
-//		HttpSession session = request.getSession();
-//		if(!session.isNew() && session.getAttribute("role").equals("teacher")) {
-//			int id = (int) session.getAttribute("id");
-//			quiz.setTeacher_id(teacherService.getTeacher(id));
-//			quizService.updateQuiz(quiz);
-//		}
-//		return "redirect:/";
-//	}
-//
-//	@GetMapping("/delete/{id}")
-//	public String deleteQuiz(@PathVariable int id, HttpServletRequest request, ModelMap quizModel) {
-//		HttpSession session = request.getSession();
-//		if(!session.isNew() && session.getAttribute("role").equals("teacher")){
-//			quizService.deleteQuiz(id);
-//		}return "redirect:/";
-//	}
+    @RequestMapping("/showResult/{id}")
+    public String showResult(HttpServletRequest request, ModelMap examModel,@PathVariable int id) {
+        HttpSession session = request.getSession();
+        if(!session.isNew() && session.getAttribute("role") != null){
+            if(session.getAttribute("role").equals("student")) {
+                examModel.addAttribute("scores",scoreService.getResultScores((Integer) session.getAttribute("id"),id));
+                examModel.addAttribute("result",resultService.getResultByStudent((Integer) session.getAttribute("id"),id));
+                return "exam/showresult";
+            }
+		}
+        return "redirect:/";
+    }
 }
