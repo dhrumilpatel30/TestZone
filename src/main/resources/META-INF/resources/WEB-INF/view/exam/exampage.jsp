@@ -22,7 +22,7 @@
             Quiz Title: ${quiz.quiz_title}<br>
             Quiz Duration: ${quiz.duration} min <br>
             Quiz Total Maximum Marks: ${quiz.total_max_marks}<br>
-            Quiz Total Maximum Marks: ${quiz.passing_marks}<br>
+            Quiz Total Passing Marks: ${quiz.passing_marks}<br>
         </p><br>
     </c:if>
 	<c:choose>
@@ -54,7 +54,7 @@
 						<td>${scores.scores[j.index].question_id.max_marks}</td>
 					</tr>
 				</c:forEach>
-				<input type="submit" value="Submit Answers"/>
+				<div style="text-align: center;"><input type="submit" value="Submit Answers"/></div>
 			</form:form>
 			</tbody>
 		</table>

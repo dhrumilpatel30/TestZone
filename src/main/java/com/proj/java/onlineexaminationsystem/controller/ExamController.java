@@ -51,7 +51,7 @@ public class ExamController{
         examModel.addAttribute("result",result);
         examModel.addAttribute("scores",scoreService.getResultScores(
                 result.getStudent_id().getId(),result.getQuiz_id().getQuiz_id()));
-        return "exam/showresult";
+        return "exam/showResult";
 	}
     @RequestMapping("/showResult/{id}")
     public String showResult(HttpServletRequest request, ModelMap examModel,@PathVariable int id) {
@@ -60,7 +60,7 @@ public class ExamController{
             if(session.getAttribute("role").equals("student")) {
                 examModel.addAttribute("scores",scoreService.getResultScores((Integer) session.getAttribute("id"),id));
                 examModel.addAttribute("result",resultService.getResultByStudent((Integer) session.getAttribute("id"),id));
-                return "exam/showresult";
+                return "exam/showResult";
             }
 		}
         return "redirect:/";

@@ -25,7 +25,8 @@
 			${error}
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
-	</c:if>"${result != null}">
+	</c:if>
+	<c:if test="${result != null}">
         <p>
             Quiz Details:<br>
             Quiz Title: ${result.quiz_id.quiz_title}<br>
@@ -35,7 +36,6 @@
             Quiz Passing Marks: ${result.quiz_id.passing_marks}<br>
         </p><br>
     </c:if>
-	<h2>Quiz</h2>
 	<br>
 	<c:choose>
 	<c:when test="${scores != null}">
@@ -64,9 +64,8 @@
 						<td>
 							<c:if test="${s.choosen_answer eq '-1'}">
 								No Answer Selected.
-							</c:if></td>
-
-							<c:if test="${! s.choosen_answer eq '-1'}">
+							</c:if>
+							<c:if test="${s.choosen_answer eq '-1' == false}">
 								${s.choosen_answer}
 							</c:if>
 						</td>

@@ -81,9 +81,9 @@
 						<td>${q.subject}</td>
 						<td>${q.total_max_marks}</td>
 						<td>${q.avg_score}</td>
-						<td><a href=""<%=
+						<td><a href="<%=
 						request.getContextPath()
-						%>/exam/showResult/${q.quiz_id}"">View Result</a></td>
+						%>/exam/showResult/${q.quiz_id}">View Result</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
