@@ -2,7 +2,9 @@ package com.proj.java.onlineexaminationsystem.controller;
 
 
 import com.proj.java.onlineexaminationsystem.entity.Quiz;
+import com.proj.java.onlineexaminationsystem.entity.Score;
 import com.proj.java.onlineexaminationsystem.service.QuizService;
+import com.proj.java.onlineexaminationsystem.service.ScoreService;
 import com.proj.java.onlineexaminationsystem.service.StudentService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -11,21 +13,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/exam")
 public class ExamController{
-	@Autowired
-	private QuizService quizService;
     @Autowired
-    private StudentService studentService;
-
-//	@GetMapping("/{id}")
-//	public String getQuiz(@PathVariable int id, ModelMap quizModel) {
-//		Quiz quiz = quizService.getQuiz(id);
-//		quizModel.addAttribute("quiz", quiz);
-//		quizModel.addAttribute("questions",quiz.getQuestions());
-//		return "quiz/home_page";
-//	}
+    private ScoreService scoreService;
+    @Autowired
+    private QuizService quizService;
+	@GetMapping("/{id}")
+	public String getExam(HttpServletRequest request, @PathVariable int id, ModelMap examModel) {
+        HttpSession session = request.getSession();
+        if(!session.isNew() && session.getAttribute("role") != null){
+            if(session.getAttribute("role").equals("student")) {
+                List<Score> scoreList = scoreService.getExamQuestions((int)session.getAttribute("id"),id);
+                examModel.addAttribute("scores", scoreList);
+                examModel.addAttribute("quiz",quizService.getQuiz(id));
+                return "exam/exampage";
+            }
+		}
+        return "redirect:/";
+	}
 //	@GetMapping("/addQuiz")
 //	public String addQuiz(HttpServletRequest request, ModelMap quizModel) {
 //		HttpSession session = request.getSession();

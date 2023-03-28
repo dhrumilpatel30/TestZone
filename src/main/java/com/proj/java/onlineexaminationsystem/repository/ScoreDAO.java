@@ -1,6 +1,9 @@
 package com.proj.java.onlineexaminationsystem.repository;
 
+import com.proj.java.onlineexaminationsystem.entity.Quiz;
+import com.proj.java.onlineexaminationsystem.entity.Result;
 import com.proj.java.onlineexaminationsystem.entity.Score;
+import com.proj.java.onlineexaminationsystem.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
@@ -57,6 +60,16 @@ public class ScoreDAO {
 		currentSession.remove(score);
 		currentSession.close();
 
+	}
+
+
+	@Transactional
+	public List<Score> getScoresForExam(final Student student, final Quiz quiz) {
+		Session currentSession = entityManager.unwrap(Session.class);
+		TypedQuery<Score> theQuery = currentSession.createQuery("from Score where quiz_id=:q and student_id=:s", Score.class);
+		theQuery.setParameter("q",quiz);
+		theQuery.setParameter("s",student);
+		return theQuery.getResultList();
 	}
 }
 

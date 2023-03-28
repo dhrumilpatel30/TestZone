@@ -65,6 +65,8 @@ public class ResultDAO {
 	public boolean isResultPresent(Student student, Quiz quiz){
 		Session currentSession = entityManager.unwrap(Session.class);
 		TypedQuery<Result> theQuery = currentSession.createQuery("from Result where student_id=:s and quiz_id=:q", Result.class);
+		theQuery.setParameter("s",student);
+		theQuery.setParameter("q",quiz);
 		try {
 			theQuery.getSingleResult();
 			return true;
