@@ -23,17 +23,9 @@ public class Score {
     private Student student_id;
 
     @Column
-    private int score;
+    private String score;
 
     public Score() {
-    }
-
-    public Score(int score_id, Question question_id, Quiz quiz_id, Student student_id, int score) {
-        this.score_id = score_id;
-        this.question_id = question_id;
-        this.quiz_id = quiz_id;
-        this.student_id = student_id;
-        this.score = score;
     }
 
     public int getScore_id() {
@@ -68,11 +60,11 @@ public class Score {
         this.student_id = student_id;
     }
 
-    public int getScore() {
+    public String getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(String score) {
         this.score = score;
     }
 

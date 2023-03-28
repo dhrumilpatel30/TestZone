@@ -44,7 +44,9 @@
 						<td>${q.subject}</td>
 						<td>${q.total_max_marks}</td>
 						<td>${q.avg_score}</td>
-						<td><a href="#">Start Quiz</a></td>
+						<td><a href="<%=
+						request.getContextPath()
+						%>/exam/${q.quiz_id}">Start Quiz</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
