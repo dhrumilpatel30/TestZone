@@ -38,6 +38,7 @@ public class ExamController{
                 ScoreList scores = new ScoreList(scoreList);
                 examModel.addAttribute("scores",scores);
                 examModel.addAttribute("quiz",quizService.getQuiz(id));
+
                 return "exam/exampage";
             }
 		}
@@ -51,6 +52,12 @@ public class ExamController{
         examModel.addAttribute("result",result);
         examModel.addAttribute("scores",scoreService.getResultScores(
                 result.getStudent_id().getId(),result.getQuiz_id().getQuiz_id()));
+        if(result.getResult() >= result.getQuiz_id().getPassing_marks()){
+            examModel.addAttribute("success","You are Pass in this Quiz");
+        }
+        else {
+            examModel.addAttribute("error","Sorry,You are not pass in this quiz");
+        }
         return "exam/showResult";
 	}
     @RequestMapping("/showResult/{id}")
@@ -58,8 +65,15 @@ public class ExamController{
         HttpSession session = request.getSession();
         if(!session.isNew() && session.getAttribute("role") != null){
             if(session.getAttribute("role").equals("student")) {
+                Result result = resultService.getResultByStudent((Integer) session.getAttribute("id"),id);
                 examModel.addAttribute("scores",scoreService.getResultScores((Integer) session.getAttribute("id"),id));
-                examModel.addAttribute("result",resultService.getResultByStudent((Integer) session.getAttribute("id"),id));
+                examModel.addAttribute("result",result);
+                if(result.getResult() >= result.getQuiz_id().getPassing_marks()){
+                    examModel.addAttribute("success","You are Pass in this Quiz");
+                }
+                else {
+                    examModel.addAttribute("error","Sorry,You are not pass in this quiz");
+                }
                 return "exam/showResult";
             }
 		}

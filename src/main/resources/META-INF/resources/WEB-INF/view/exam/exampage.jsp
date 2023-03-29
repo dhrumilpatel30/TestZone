@@ -47,10 +47,10 @@
 <%--						<form:input path="scores[${i}].student_id" value="${scores.scores[j.index - 1].student_id}" type="hidden" />--%>
 						<td>
 <%--							<form:input path=""--%>
-		<form:radiobutton path="scores[${i}].score" value="1" />${scores.scores[j.index].question_id.option1}<br>
-		<form:radiobutton path="scores[${i}].score" value="2" />${scores.scores[j.index].question_id.option2}<br>
-		<form:radiobutton path="scores[${i}].score" value="3" />${scores.scores[j.index].question_id.option3}<br>
-		<form:radiobutton path="scores[${i}].score" value="4" />${scores.scores[j.index].question_id.option4}
+		<form:radiobutton path="scores[${i}].choosen_answer" value="1" />${scores.scores[j.index].question_id.option1}<br>
+		<form:radiobutton path="scores[${i}].choosen_answer" value="2" />${scores.scores[j.index].question_id.option2}<br>
+		<form:radiobutton path="scores[${i}].choosen_answer" value="3" />${scores.scores[j.index].question_id.option3}<br>
+		<form:radiobutton path="scores[${i}].choosen_answer" value="4" />${scores.scores[j.index].question_id.option4}
 						<td>${scores.scores[j.index].question_id.max_marks}</td>
 					</tr>
 				</c:forEach>

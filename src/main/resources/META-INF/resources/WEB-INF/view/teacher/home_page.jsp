@@ -34,6 +34,7 @@
 					<th>Created By</th>
 					<th>Edit Questions</th>
 					<th>Edit Quiz</th>
+					<th>View Quiz Results</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -51,6 +52,8 @@
 						<td><a href="<%=request.getContextPath()%>/quiz/update/${q.quiz_id}">Update Quiz</a>
 							<a href="<%=request.getContextPath()%>/quiz/delete/${q.quiz_id}"
 							   onclick="return confirm('You are Deleting ${q.quiz_title} Confirm?')">Delete Quiz</a>
+						</td>
+						<td><a href="<%=request.getContextPath()%>/result/${q.quiz_id}">Quiz Results</a>
 						</td>
 					</tr>
 				</c:forEach>

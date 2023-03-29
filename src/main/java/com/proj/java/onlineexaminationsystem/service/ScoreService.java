@@ -53,7 +53,6 @@ public class ScoreService {
 			s.setQuestion_id(q);
 			s.setQuiz_id(quiz);
 			s.setStudent_id(student);
-			s.setScore("-1");
 			scoreDAO.addScore(s);
 			scores.add(scoreDAO.getScore(s.getScore_id()));
 		}
@@ -65,16 +64,16 @@ public class ScoreService {
 		Score s1;
 		for (Score s:scores){
 			s1 = scoreDAO.getScore(s.getScore_id());
-			s1.setScore(s.getScore());
-			scoreDAO.updateScore(s1);
-//			Score s1 = scoreDAO.getScore(s.getScore_id());
-			s1.setChoosen_answer(s1.getScore());
-			if(s1.getQuestion_id().getCorrect_answer().equals(s1.getScore())){
+
+			s1.setChoosen_answer(s.getChoosen_answer());
+			if(s.getChoosen_answer() == null)s1.setChoosen_answer("0");
+			if(s1.getQuestion_id().getCorrect_answer().equals(s1.getChoosen_answer())){
 				s1.setScore(String.valueOf(s1.getQuestion_id().getMax_marks()));
 			}
 			else{
 				s1.setScore("0");
 			}
+			scoreDAO.updateScore(s1);
 			result.setResult(Integer.parseInt(s1.getScore())+result.getResult());
 		}
 		Score s = scoreDAO.getScore(scores.get(0).getScore_id());

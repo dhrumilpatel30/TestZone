@@ -31,7 +31,7 @@
             Quiz Details:<br>
             Quiz Title: ${result.quiz_id.quiz_title}<br>
             Quiz Duration: ${result.quiz_id.duration} min <br>
-            Quiz Obtained Marks: ${result.result}<br>
+            Quiz Total Obtained Marks: ${result.result}<br>
             Quiz Total Maximum Marks: ${result.quiz_id.total_max_marks}<br>
             Quiz Passing Marks: ${result.quiz_id.passing_marks}<br>
         </p><br>
@@ -62,10 +62,10 @@
                                 4.${s.question_id.option4}</td>
 						<td>${s.question_id.correct_answer}</td>
 						<td>
-							<c:if test="${s.choosen_answer eq '-1'}">
-								No Answer Selected.
+							<c:if test="${s.choosen_answer eq '0'}">
+								Not Attempted.
 							</c:if>
-							<c:if test="${s.choosen_answer eq '-1' == false}">
+							<c:if test="${s.choosen_answer eq '0' == false}">
 								${s.choosen_answer}
 							</c:if>
 						</td>

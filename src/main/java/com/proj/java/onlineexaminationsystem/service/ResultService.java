@@ -7,8 +7,10 @@ import com.proj.java.onlineexaminationsystem.repository.QuizDAO;
 import com.proj.java.onlineexaminationsystem.repository.ResultDAO;
 import com.proj.java.onlineexaminationsystem.repository.StudentDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.amqp.RabbitRetryTemplateCustomizer;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,6 +33,7 @@ public class ResultService {
 
 	public void addResult(final Result result) {
 		resultDAO.addResult(result);
+		quizDAO.updateAvgResult(result.getQuiz_id());
 	}
 
 	public void updateResult(final Result result) {
@@ -45,5 +48,27 @@ public class ResultService {
 		Student student = studentDAO.getStudent(student_id);
 		Quiz quiz = quizDAO.getQuiz(quiz_id);
 		return resultDAO.getResultByStudent(student,quiz);
+	}
+
+	public List<Result> getPassResults(final Quiz quiz){
+		List<Result> results = new ArrayList<>();
+		List<Result> allResults = getResults();
+		for (Result r : allResults){
+			if(r.getQuiz_id() == quiz && r.getResult() >= quiz.getPassing_marks()){
+				results.add(r);
+			}
+		}
+		return results;
+	}
+
+	public List<Result> getFailResults(final Quiz quiz){
+		List<Result> results = new ArrayList<>();
+		List<Result> allResults = getResults();
+		for (Result r : allResults){
+			if(r.getQuiz_id() == quiz && r.getResult() < quiz.getPassing_marks()){
+				results.add(r);
+			}
+		}
+		return results;
 	}
 }

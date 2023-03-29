@@ -47,15 +47,20 @@ public class StudentController {
         HttpSession session = request.getSession();
         session.setAttribute("role", "student");
         session.setAttribute("id",student.getId());
-        model.addAttribute("msg","Login SuccessFull,Welcome");
+        model.addAttribute("success","Login SuccessFull,Welcome");
         model.addAttribute("quizzesCompleted", studentService.getCompletedQuizzes(student));
         model.addAttribute("quizzesPending", studentService.getPendingQuizzes(student));
         return "student/home_page";
     }
     
     @GetMapping("login")
-    public String loginGet() {
-    	return "student/login_page";
+    public String loginGet(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("role") != null) {
+            return "redirect:/";
+        }
+        session.invalidate();
+        return "student/login_page";
     }
     
     @PostMapping("signup")

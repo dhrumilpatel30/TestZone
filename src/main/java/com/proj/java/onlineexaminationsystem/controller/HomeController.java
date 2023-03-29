@@ -17,6 +17,7 @@ public class HomeController {
 			}
 			return "redirect:/student";
 		}
+		session.invalidate();
 		return "redirect:/student/login";
     }
     

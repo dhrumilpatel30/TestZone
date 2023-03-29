@@ -131,4 +131,20 @@ public class Quiz {
     public void setPassing_marks(int passing_marks) {
         this.passing_marks = passing_marks;
     }
+
+    public List<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
+    }
+
+    public List<Result> getResults() {
+        return results;
+    }
+
+    public void setResults(List<Result> results) {
+        this.results = results;
+    }
 }
