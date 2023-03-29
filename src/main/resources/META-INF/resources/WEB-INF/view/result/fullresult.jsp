@@ -14,27 +14,29 @@
 
 	<%@include file="../components/header.jsp"%>
 	<h2>Online Examination System</h2>
-	<c:if test="${not empty success}">
-		<div class="alert alert-success alert-dismissible fade show" role="alert">
-			${success}
-			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		</div>
-	</c:if>
-	<c:if test="${not empty error}">
-		<div class="alert alert-danger alert-dismissible fade show" role="alert">
-			${error}
-			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		</div>
-	</c:if>
 	<c:if test="${result != null}">
         <p>
+			Result Status:
+			<c:if test="${result.result < result.quiz_id.passing_marks}">
+				Not Pass
+			</c:if>
+			<c:if test="${result.result >= result.quiz_id.passing_marks}">
+				Pass
+			</c:if>
+			<br><br>
             Quiz Details:<br>
             Quiz Title: ${result.quiz_id.quiz_title}<br>
             Quiz Duration: ${result.quiz_id.duration} min <br>
             Quiz Total Obtained Marks: ${result.result}<br>
+            Quiz Total Avg Marks Marks: ${result.quiz_id.avg_score}<br>
             Quiz Total Maximum Marks: ${result.quiz_id.total_max_marks}<br>
             Quiz Passing Marks: ${result.quiz_id.passing_marks}<br>
-        </p><br>
+			<br>
+			Student Deatils:<br>
+			Student Id: ${result.student_id.id}<br>
+			Student Name: ${result.student_id.name}<br>
+			Student Email: ${result.student_id.email}<br>
+        </p>
     </c:if>
 	<br>
 	<c:choose>

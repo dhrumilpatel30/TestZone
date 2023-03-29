@@ -37,7 +37,7 @@ public class ResultController{
                 resultModel.addAttribute("resultPassed",resultService.getPassResults(quiz));
                 resultModel.addAttribute("resultFailed",resultService.getFailResults(quiz));
                 resultModel.addAttribute("quiz",quiz);
-                return "result/viewresult";
+                return "result/viewresults";
             }
 		}
         return "redirect:/";

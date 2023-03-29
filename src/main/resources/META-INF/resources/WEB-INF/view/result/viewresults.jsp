@@ -21,13 +21,15 @@
             Quiz Title: ${quiz.quiz_title}<br>
             Quiz Duration: ${quiz.duration} min <br>
             Quiz Total Maximum Marks: ${quiz.total_max_marks}<br>
+            Quiz Total Avg Marks: ${quiz.avg_score}<br>
             Quiz Total Passing Marks: ${quiz.passing_marks}<br>
         </p><br>
     </c:if>
 	<br>
 	<c:choose>
 	<c:when test="${resultPassed != null}">
-		<table cellpadding="5" cellspacing="5">
+		<h4>Passed Students</h4>
+		<table class="table">
 			<thead>
 				<tr>
                     <th>Result Id</th>
@@ -44,19 +46,19 @@
                         <td>${r.student_id.name}</td>
                         <td>${r.student_id.id}</td>
                         <td>${r.result}</td>
-						<td><a href="<%=request.getContextPath()%>/result/studentResult/${r.result_id}">view Complete Result</a>
+						<td><a href="<%=request.getContextPath()%>/result/studentResult/${r.result_id}"><button type="button" class="btn btn-dark">view Complete Result</button></a>
 						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+        <c:if test="${empty resultPassed}">No one is Passed Yet!</c:if>
 	</c:when>
-        <c:otherwise>No one is Passed :(</c:otherwise>
 </c:choose>
-
 	<c:choose>
 	<c:when test="${resultFailed != null}">
-		<table cellpadding="5" cellspacing="5">
+		<h4>Failed Students</h4>
+		<table class="table">
 			<thead>
 				<tr>
                     <th>Result Id</th>
@@ -73,14 +75,14 @@
                         <td>${r.student_id.name}</td>
                         <td>${r.student_id.id}</td>
                         <td>${r.result}</td>
-						<td><a href="<%=request.getContextPath()%>/result/studentResult/${r.result_id}">view Complete Result</a>
+						<td><a href="<%=request.getContextPath()%>/result/studentResult/${r.result_id}"><button type="button" class="btn btn-dark">view Complete Result</button></a>
 						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+        <c:if test="${empty resultFailed}">No one is Failed</c:if>
 	</c:when>
-        <c:otherwise>No one is Failed</c:otherwise>
 </c:choose>
 
 	<%@include file="../components/footer.html"%>

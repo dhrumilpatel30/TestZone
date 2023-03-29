@@ -18,10 +18,10 @@
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	</c:if>
-		<a href="<%=request.getContextPath()%>/quiz/addQuiz">Add a new Quiz</a >
+		<a href="<%=request.getContextPath()%>/quiz/addQuiz"><button type="button" class="btn btn-dark">Add a new Quiz</button></a >
 	<c:choose>
 	<c:when test="${quizzes != null}">
-		<table cellpadding="5" cellspacing="5">
+		<table class="table">
 			<thead>
 				<tr>
 					<th>id</th>
@@ -48,20 +48,19 @@
 						<td>${q.passing_marks}</td>
 						<td>${q.avg_score}</td>
 						<td>${q.teacher_id.name}</td>
-						<td><a href="<%=request.getContextPath()%>/quiz/${q.quiz_id}">Edit Questions</a></td>
-						<td><a href="<%=request.getContextPath()%>/quiz/update/${q.quiz_id}">Update Quiz</a>
+						<td><a href="<%=request.getContextPath()%>/quiz/${q.quiz_id}"><button type="button" class="btn btn-dark">Edit Questions</button></a></td>
+						<td><a href="<%=request.getContextPath()%>/quiz/update/${q.quiz_id}"><button type="button" class="btn btn-dark">Update Quiz</button></a>
 							<a href="<%=request.getContextPath()%>/quiz/delete/${q.quiz_id}"
-							   onclick="return confirm('You are Deleting ${q.quiz_title} Confirm?')">Delete Quiz</a>
+							   onclick="return confirm('You are Deleting ${q.quiz_title} Confirm?')"><button type="button" class="btn btn-dark">Delete Quiz</button></a>
 						</td>
-						<td><a href="<%=request.getContextPath()%>/result/${q.quiz_id}">Quiz Results</a>
+						<td><a href="<%=request.getContextPath()%>/result/${q.quiz_id}"><button type="button" class="btn btn-dark">Quiz Results</button></a>
 						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<c:if test="${empty quizzes}">No Quiz Created</c:if>
 	</c:when>
-	<c:otherwise>
-	</c:otherwise>
 </c:choose>
 
 		<%@include file="../components/footer.html"%>

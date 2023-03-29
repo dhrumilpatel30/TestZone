@@ -31,10 +31,10 @@
         </p><br>
     </c:if>
 	<br>
-	<a href="/question/addQuestion/${quiz.quiz_id}">Add Question</a>
+	<a href="/question/addQuestion/${quiz.quiz_id}"><button type="button" class="btn btn-dark">Add Question</button></a>
 	<c:choose>
 	<c:when test="${questions != null}">
-		<table cellpadding="5" cellspacing="5">
+		<table class="table">
 			<thead>
 				<tr>
 					<th>question_id</th>
@@ -60,18 +60,16 @@
 						<td>${q.option4}</td>
 						<td>${q.correct_answer}</td>
 						<td>${q.max_marks}</td>
-						<td><a href="<%=request.getContextPath()%>/question/update/${q.question_id}">Update</a>
+						<td><a href="<%=request.getContextPath()%>/question/update/${q.question_id}"><button type="button" class="btn btn-dark">Update</button></a>
 							<a href="<%=request.getContextPath()%>/question/delete/${q.question_id}"
-							   onclick="return confirm('You are Deleting ${q.question} Confirm?')">Delete</a>
+							   onclick="return confirm('You are Deleting ${q.question} Confirm?')"><button type="button" class="btn btn-dark">Delete</button></a>
 						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<c:if test="${empty questions}">No Questions added</c:if>
 	</c:when>
-	<c:otherwise>
-	No Questions added!<br>
-	</c:otherwise>
 </c:choose>
 
 

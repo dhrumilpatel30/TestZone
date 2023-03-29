@@ -23,7 +23,7 @@
 	<c:choose>
 	<c:when test="${quizzesPending != null}">
 	<h4>Pending Quiz's</h4>
-	<table cellpadding="5" cellspacing="5">
+	<table class="table">
 			<thead>
 				<tr>
 					<th>id</th>
@@ -48,11 +48,12 @@
 						<td>${q.avg_score}</td>
 						<td><a href="<%=
 						request.getContextPath()
-						%>/exam/${q.quiz_id}">Start Quiz</a></td>
+						%>/exam/${q.quiz_id}"><button type="button" class="btn btn-dark">Start Quiz</button></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<c:if test="${empty quizzesPending}">No Quiz Pending</c:if>
 	</c:when>
 </c:choose>
 
@@ -60,7 +61,7 @@
 <c:choose>
 	<c:when test="${quizzesCompleted != null}">
 	<h4>Completed Quiz's</h4>
-		<table cellpadding="5" cellspacing="5">
+		<table class="table">
 			<thead>
 				<tr>
 					<th>id</th>
@@ -68,6 +69,7 @@
 					<th>duration</th>
 					<th>Subject</th>
 					<th>maximum marks</th>
+					<th>Passing Marks</th>
 					<th>avg score</th>
 					<th>Result</th>
 				</tr>
@@ -80,14 +82,16 @@
 						<td>${q.duration} min</td>
 						<td>${q.subject}</td>
 						<td>${q.total_max_marks}</td>
+						<td>${q.passing_marks}</td>
 						<td>${q.avg_score}</td>
 						<td><a href="<%=
 						request.getContextPath()
-						%>/exam/showResult/${q.quiz_id}">View Result</a></td>
+						%>/exam/showResult/${q.quiz_id}"><button type="button" class="btn btn-dark">View Result</button></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<c:if test="${empty quizzesCompleted}">No Quiz Completed</c:if>
 	</c:when>
 </c:choose>
 
