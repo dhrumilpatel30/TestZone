@@ -4,6 +4,7 @@ import com.proj.java.onlineexaminationsystem.entity.Question;
 import com.proj.java.onlineexaminationsystem.entity.Quiz;
 import com.proj.java.onlineexaminationsystem.repository.QuestionDAO;
 import com.proj.java.onlineexaminationsystem.repository.QuizDAO;
+import com.proj.java.onlineexaminationsystem.repository.TeacherDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ public class QuizService {
 
 	@Autowired
 	private QuizDAO quizDAO;
+	@Autowired
+	private TeacherDAO teacherDAO;
 
 	public Quiz getQuiz(final int id) {
 		return quizDAO.getQuiz(id);
@@ -44,5 +47,15 @@ public class QuizService {
 		quiz.setTotal_max_marks(total_marks);
 		quizDAO.updateQuiz(quiz);
 	}
+	public List<Quiz> getTeacherQuizes(final int teacher_id){
+		return teacherDAO.getTeacher(teacher_id).getQuiz();
+	}
 
+	public List<Quiz> getNonTeacherQuizes(final int teacher_id){
+		List<Quiz> quizzes = getQuizs();
+		for (Quiz q: getTeacherQuizes(teacher_id)){
+			quizzes.remove(q);
+		}
+		return quizzes;
+	}
 }

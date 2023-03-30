@@ -2,6 +2,7 @@ package com.proj.java.onlineexaminationsystem.repository;
 
 import com.proj.java.onlineexaminationsystem.entity.Quiz;
 import com.proj.java.onlineexaminationsystem.entity.Result;
+import com.proj.java.onlineexaminationsystem.entity.Teacher;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.hibernate.Session;
@@ -74,5 +75,6 @@ public class QuizDAO {
 		quiz.setAvg_score(avg_score/n);
 		updateQuiz(quiz);
 	}
+
 }
 

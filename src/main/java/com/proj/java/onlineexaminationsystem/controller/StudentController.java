@@ -28,6 +28,10 @@ public class StudentController {
         if(session.getAttribute("role") != null) {
             if(!session.getAttribute("role").equals("student"))return "redirect:/";
         }
+        if(session.getAttribute("success") != null) {
+            model.addAttribute("success",session.getAttribute("success"));
+            session.removeAttribute("success");
+        }
         int student_id = (int) session.getAttribute("id");
         Student student = studentService.getStudent(student_id);
         model.addAttribute("quizzesCompleted", studentService.getCompletedQuizzes(student));
@@ -47,10 +51,8 @@ public class StudentController {
         HttpSession session = request.getSession();
         session.setAttribute("role", "student");
         session.setAttribute("id",student.getId());
-        model.addAttribute("success","Login SuccessFull,Welcome");
-        model.addAttribute("quizzesCompleted", studentService.getCompletedQuizzes(student));
-        model.addAttribute("quizzesPending", studentService.getPendingQuizzes(student));
-        return "student/home_page";
+        session.setAttribute("success","Login SuccessFull,Welcome");
+        return "redirect:/";
     }
     
     @GetMapping("login")

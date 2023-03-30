@@ -22,16 +22,21 @@ public class TeacherController {
 	
 	@Autowired
 	QuizService quizService;
-	
+
     @RequestMapping("")
     public String showPage(ModelMap model,HttpServletRequest request) {
         HttpSession session = request.getSession();
+        int teacher_id = 0;
         if(session.getAttribute("role") != null) {
             if(!session.getAttribute("role").equals("teacher"))return "redirect:/";
+            else teacher_id = (int) session.getAttribute("id");
         }
-    	List<Quiz> quizzes = quizService.getQuizs();
-//        System.out.println(quizzes);
-    	model.addAttribute("quizzes", quizzes);
+        if(session.getAttribute("success") != null) {
+            model.addAttribute("success",session.getAttribute("success"));
+            session.removeAttribute("success");
+        }
+        model.addAttribute("quizzesYours", quizService.getTeacherQuizes(teacher_id));
+        model.addAttribute("quizzesOthers", quizService.getNonTeacherQuizes(teacher_id));
     	return "teacher/home_page";
     }
     
@@ -46,10 +51,8 @@ public class TeacherController {
         HttpSession session = request.getSession();
         session.setAttribute("role", "teacher");
         session.setAttribute("id",teacher.getId());
-        model.addAttribute("success", "Logged in Successfully");
-        List<Quiz> quizzes = quizService.getQuizs();
-    	model.addAttribute("quizzes", quizzes);
-        return "teacher/home_page";
+        session.setAttribute("success", "Logged in Successfully");
+        return "redirect:/";
     }
     
     @GetMapping("login")
