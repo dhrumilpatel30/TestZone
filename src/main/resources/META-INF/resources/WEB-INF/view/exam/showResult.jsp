@@ -11,7 +11,9 @@
     <%@include file='../components/link.html' %>
 </head>
 <body>
-
+<script>
+    window.
+</script>
 <%@include file="../components/header.jsp" %>
 <div class="container p-3">
     <c:if test="${not empty success}">
@@ -98,10 +100,10 @@
                     <tr>
                         <td>${s.question_id.question_id}</td>
                         <td>${s.question_id.question}</td>
-                        <td>1. ${s.question_id.option1}<br>
-                            2.${s.question_id.option2}<br>
-                            3.${s.question_id.option3}<br>
-                            4.${s.question_id.option4}</td>
+                        <td>${s.question_id.option1}<br>
+                            ${s.question_id.option2}<br>
+                            ${s.question_id.option3}<br>
+                            ${s.question_id.option4}</td>
                         <td>${s.question_id.correct_answer}</td>
                         <td>
                             <c:if test="${s.choosen_answer eq '0'}">

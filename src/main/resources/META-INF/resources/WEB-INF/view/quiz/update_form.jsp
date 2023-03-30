@@ -18,7 +18,8 @@
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 		</div>
 	</c:if>
-	<div class='w-50 mx-auto my-5'>
+	<div class='w-60 mx-auto my-5'>
+		<h2>Quiz Update Form</h2>
 		<form:form action="http://localhost:8080/quiz/update" modelAttribute="quiz" method="post">
 			<form:input path="quiz_id" value="${quiz.quiz_id}" type="hidden"/>
 			<div class="mb-3">

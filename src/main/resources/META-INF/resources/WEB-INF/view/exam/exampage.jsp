@@ -17,15 +17,16 @@
 <div class="container p-3">
     <h2>Quiz</h2>
     <c:if test="${quiz != null}">
-        <div class="card bg-light mb-3" style="max-width: 18rem;">
+        <div class="card bg-light mb-3" style="max-width: 20rem;">
             <div class="card-header text-white" style="background-color: #212529;">Quiz Details</div>
             <div class="card-body">
                 <h3 class="card-title">${quiz.quiz_title}</h3>
                 <p class="card-text">
                     Quiz Subject Name: ${quiz.subject}<br>
                     Quiz Duration: ${quiz.duration} min <br>
-                    Quiz Total Maximum Marks: ${quiz.total_max_marks}<br>
-                    Quiz Total Passing Marks: ${quiz.passing_marks}<br>
+                    Total Maximum Marks: ${quiz.total_max_marks}<br>
+                    Total Passing Marks: ${quiz.passing_marks}<br>
+                    Total Avg Marks: ${quiz.avg_score}<br>
                 </p>
             </div>
         </div>

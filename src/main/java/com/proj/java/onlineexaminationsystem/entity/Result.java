@@ -15,7 +15,7 @@ public class Result {
     @JoinColumn(name = "quiz_id")
     private Quiz quiz_id;
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "student_id")
     private Student student_id;
 

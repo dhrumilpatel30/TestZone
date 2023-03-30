@@ -49,16 +49,7 @@ public class ExamController{
         Result result = scoreService.getResult(scores.getScores());
 //			System.out.println("\n\n\n\n\\n\\n\n\n\n\n\n\n\\n\n\n\n"+scores.getScores()+"\n\n\n\n\n\n\n\n\n\n\n");
         resultService.addResult(result);
-        examModel.addAttribute("result",result);
-        examModel.addAttribute("scores",scoreService.getResultScores(
-                result.getStudent_id().getId(),result.getQuiz_id().getQuiz_id()));
-        if(result.getResult() >= result.getQuiz_id().getPassing_marks()){
-            examModel.addAttribute("success","You are Pass in this Quiz");
-        }
-        else {
-            examModel.addAttribute("error","Sorry,You are not pass in this quiz");
-        }
-        return "exam/showResult";
+        return "redirect:/exam/showResult/"+result.getQuiz_id().getQuiz_id();
 	}
     @RequestMapping("/showResult/{id}")
     public String showResult(HttpServletRequest request, ModelMap examModel,@PathVariable int id) {
