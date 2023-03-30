@@ -22,6 +22,7 @@
             <div class="card-body">
                 <h3 class="card-title">${quiz.quiz_title}</h3>
                 <p class="card-text">
+                    Quiz Subject Name: ${quiz.subject}<br>
                     Quiz Duration: ${quiz.duration} min <br>
                     Quiz Total Maximum Marks: ${quiz.total_max_marks}<br>
                     Quiz Total Passing Marks: ${quiz.passing_marks}<br>
@@ -32,7 +33,7 @@
     <c:choose>
         <c:when test="${scores != null}">
             <h4>Questions</h4>
-            <table class="table table-hover">
+            <table class="table">
                 <thead class="table-dark">
                 <tr>
                     <th scope="col" class="col-1">question_id</th>
