@@ -50,7 +50,7 @@ public class ResultController{
                 Result result = resultService.getResult(id);
                 resultModel.addAttribute("result",result);
                 resultModel.addAttribute("scores",scoreService.getResultScores(result.getStudent_id().getId(),result.getQuiz_id().getQuiz_id()));
-                return "result/fullresult";
+                return "exam/showResult";
             }
 		}
         return "redirect:/";

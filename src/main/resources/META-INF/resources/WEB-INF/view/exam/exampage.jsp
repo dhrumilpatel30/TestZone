@@ -78,9 +78,8 @@
                     </c:forEach>
                     <tr>
                         <td></td>
-                        <td style="pointer-events: none;text-align: center;" onmouseover="this.style.color='white'"><br>
-                            <button type="submit" class="w-50 btn btn-dark" style="pointer-events:fill"
-                                    onclick="return confirm('Submit Exam Now, Confirm?')">Submit Answers
+                        <td style="pointer-events: none;text-align: center;"><br>
+                            <button type="submit" class="w-50 btn btn-dark" style="pointer-events:fill">Submit Answers
                             </button>
                         </td>
                         <td></td>

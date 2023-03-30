@@ -14,30 +14,26 @@
 
 <%@include file="../components/header.jsp" %>
 <div class="container p-3">
-    <c:if test="${not empty success}">
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                ${success}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    </c:if>
     <h2>Quiz</h2>
-    <c:if test="${quiz != null}">
-        <div class="card bg-light m-3" style="max-width: 25rem;">
+        <c:if test="${quiz != null}">
+        <div class="card bg-light mb-3" style="max-width: 20rem;">
             <div class="card-header text-white" style="background-color: #212529;">Quiz Details</div>
             <div class="card-body">
                 <h3 class="card-title">${quiz.quiz_title}</h3>
                 <p class="card-text">
-                    Id: ${quiz.quiz_id}<br>
-                    Duration: ${quiz.duration} min <br>
-                    Subject Name: ${quiz.subject}<br>
-                    Teacher Name: ${quiz.teacher_id.name}<br>
+                    Quiz Subject Name: ${quiz.subject}<br>
+                    Quiz Duration: ${quiz.duration} min <br>
+                    Total Maximum Marks: ${quiz.total_max_marks}<br>
+                    Total Passing Marks: ${quiz.passing_marks}<br>
+                    Total Avg Marks: ${quiz.avg_score}<br>
                 </p>
             </div>
         </div>
     </c:if>
+
     <br>
     <a href="/question/addQuestion/${quiz.quiz_id}">
-        <button type="button" class="btn btn-dark">Add Question</button>
+        <button type="button" class="btn btn-dark mt-2 mb-3">Add Question</button>
     </a>
     <c:choose>
         <c:when test="${questions != null}">
@@ -53,6 +49,8 @@
                     <th>option4</th>
                     <th>correct_answer</th>
                     <th>max_marks</th>
+                    <th>Update Question</th>
+                    <th>Delete Question</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -70,16 +68,42 @@
                         <td><a href="<%=request.getContextPath()%>/question/update/${q.question_id}">
                             <button type="button" class="btn btn-dark">Update</button>
                         </a>
-                            <a href="<%=request.getContextPath()%>/question/delete/${q.question_id}"
-                               onclick="return confirm('You are Deleting ${q.question} Confirm?')">
-                                <button type="button" class="btn btn-dark">Delete</button>
-                            </a>
                         </td>
+                        <td>
+                                <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal">
+                                    Delete Question
+                                </button>
+                        </td>
+                        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="exampleModalLabel">Delete Confirmation</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h5>You are deleting Question ${q.question}</h5><br>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">
+                                            Cancel Deletion
+                                        </button>
+                                        <a href="<%=request.getContextPath()%>/question/delete/${q.question_id}">
+                                            <button type="button" class="btn btn-dark">Confirm For Deleting Question</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
-            <c:if test="${empty questions}">No Questions added</c:if>
+            <c:if test="${empty questions}"><h3 style="text-align: center;">
+                No Questions added</h3></c:if>
         </c:when>
     </c:choose>
 </div>
