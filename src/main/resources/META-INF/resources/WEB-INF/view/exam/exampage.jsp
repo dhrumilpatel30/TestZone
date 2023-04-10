@@ -12,7 +12,6 @@
     <%@include file='../components/link.html' %>
 </head>
 <body>
-
 <%@include file="../components/header.jsp" %>
 <div class="container p-3">
     <h2>Quiz</h2>
@@ -79,7 +78,8 @@
                     <tr>
                         <td></td>
                         <td style="pointer-events: none;text-align: center;"><br>
-                            <button type="submit" class="w-50 btn btn-dark" style="pointer-events:fill">Submit Answers
+                            <button type="submit" class="w-50 btn btn-dark" style="pointer-events:fill "
+                                    id="submitButton">Submit Answers
                             </button>
                         </td>
                         <td></td>

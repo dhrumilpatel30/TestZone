@@ -13,7 +13,7 @@
 <body>
 
 <%@include file="../components/header.jsp" %>
-    <h2 class="m-2">Online Examination System</h2>
+<h2 class="m-2">Online Examination System</h2>
 <div class="container p-3">
     <c:if test="${not empty success}">
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -90,7 +90,10 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <c:if test="${empty quizzesPending}">No Quiz Pending</c:if>
+            <c:if test="${empty quizzesPending}">
+                <div
+                        style="text-align: center;"><h4>No Quiz Pending, Enjoy :)</h4></div>
+            </c:if>
         </c:when>
     </c:choose>
 
@@ -130,7 +133,9 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <c:if test="${empty quizzesCompleted}">No Quiz Completed</c:if>
+            <c:if test="${empty quizzesCompleted}">
+                <center><h4>No Quiz Completed</h4></center>
+            </c:if>
         </c:when>
     </c:choose>
 </div>

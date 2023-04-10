@@ -15,78 +15,78 @@ import java.util.List;
 @Repository
 public class ResultDAO {
 
-	private EntityManager entityManager;
+    private EntityManager entityManager;
 
-	@Autowired
-	public ResultDAO(EntityManager theEntityManager) {
-		entityManager = theEntityManager;
-	}
+    @Autowired
+    public ResultDAO(EntityManager theEntityManager) {
+        entityManager = theEntityManager;
+    }
 
-	public Result getResult(final int id) {
-		Session currentSession = entityManager.unwrap(Session.class);
-		Result result = currentSession.get(Result.class, id);
-		currentSession.close();
-		return result;
-	}
+    public Result getResult(final int id) {
+        Session currentSession = entityManager.unwrap(Session.class);
+        Result result = currentSession.get(Result.class, id);
+        currentSession.close();
+        return result;
+    }
 
-	public List<Result> getResults() {
-		Session currentSession = entityManager.unwrap(Session.class);
+    public List<Result> getResults() {
+        Session currentSession = entityManager.unwrap(Session.class);
 
-		TypedQuery<Result> theQuery = currentSession.createQuery("from Result", Result.class);
-		List<Result> results = theQuery.getResultList();
+        TypedQuery<Result> theQuery = currentSession.createQuery("from Result", Result.class);
+        List<Result> results = theQuery.getResultList();
 
-		currentSession.close();
-		return results;
-	}
-	@Transactional
-	public void addResult(final Result result) {
-		Session currentSession = entityManager.unwrap(Session.class);
-		currentSession.persist(result);
-		currentSession.close();
-	}
+        currentSession.close();
+        return results;
+    }
 
-	@Transactional
-	public void updateResult(final Result result) {
-		Session currentSession = entityManager.unwrap(Session.class);
-		currentSession.merge(result);
-		currentSession.close();
-	}
+    @Transactional
+    public void addResult(final Result result) {
+        Session currentSession = entityManager.unwrap(Session.class);
+        currentSession.persist(result);
+        currentSession.close();
+    }
 
-	@Transactional
-	public void deleteResult(final int id) {
-		Session currentSession = entityManager.unwrap(Session.class);
-		Result result = currentSession.get(Result.class, id);
-		currentSession.remove(result);
-		currentSession.close();
+    @Transactional
+    public void updateResult(final Result result) {
+        Session currentSession = entityManager.unwrap(Session.class);
+        currentSession.merge(result);
+        currentSession.close();
+    }
 
-	}
+    @Transactional
+    public void deleteResult(final int id) {
+        Session currentSession = entityManager.unwrap(Session.class);
+        Result result = currentSession.get(Result.class, id);
+        currentSession.remove(result);
+        currentSession.close();
 
-	@Transactional
-	public boolean isResultPresent(Student student, Quiz quiz){
-		Session currentSession = entityManager.unwrap(Session.class);
-		TypedQuery<Result> theQuery = currentSession.createQuery("from Result where student_id=:s and quiz_id=:q", Result.class);
-		theQuery.setParameter("s",student);
-		theQuery.setParameter("q",quiz);
-		try {
-			theQuery.getSingleResult();
-			return true;
-		}
-		catch (Exception e){
-			return false;
-		}
-	}
-	@Transactional
-	public Result getResultByStudent(Student student,Quiz quiz){
-		Session currentSession = entityManager.unwrap(Session.class);
-		TypedQuery<Result> theQuery = currentSession.createQuery("from Result where student_id=:s and quiz_id=:q", Result.class);
-		theQuery.setParameter("s",student);
-		theQuery.setParameter("q",quiz);
-		try {
-			return theQuery.getSingleResult();
-		}
-		catch (Exception e){
-			return null;
-		}
-	}
+    }
+
+    @Transactional
+    public boolean isResultPresent(Student student, Quiz quiz) {
+        Session currentSession = entityManager.unwrap(Session.class);
+        TypedQuery<Result> theQuery = currentSession.createQuery("from Result where student_id=:s and quiz_id=:q", Result.class);
+        theQuery.setParameter("s", student);
+        theQuery.setParameter("q", quiz);
+        try {
+            theQuery.getSingleResult();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Transactional
+    public Result getResultByStudent(Student student, Quiz quiz) {
+        Session currentSession = entityManager.unwrap(Session.class);
+        TypedQuery<Result> theQuery = currentSession.createQuery("from Result where student_id=:s and quiz_id=:q", Result.class);
+        theQuery.setParameter("s", student);
+        theQuery.setParameter("q", quiz);
+        try {
+            return theQuery.getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
 

@@ -11,104 +11,104 @@ import java.util.List;
 @Table(name = "student")
 public class Student implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private int id;
 
-	@Column
-	private String name;
-	@Column(unique = true)
-	private String email;
-	@Column
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date date_of_birth;
-	@Column
-	private String gender;
-	@Column 
-	private String password;
+    @Column
+    private String name;
+    @Column(unique = true)
+    private String email;
+    @Column
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date date_of_birth;
+    @Column
+    private String gender;
+    @Column
+    private String password;
 
-	@OneToMany(mappedBy = "student_id", cascade = CascadeType.ALL)
-	private List<Score> scores;
-	@OneToMany(mappedBy = "student_id", cascade = CascadeType.ALL)
-	private List<Result> results;
+    @OneToMany(mappedBy = "student_id", cascade = CascadeType.ALL)
+    private List<Score> scores;
+    @OneToMany(mappedBy = "student_id", cascade = CascadeType.ALL)
+    private List<Result> results;
 
-	public Student() {
-	}
+    public Student() {
+    }
 
-	public Student(int id, String name, String email, Date date_of_birth, String gender) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.date_of_birth = date_of_birth;
-		this.gender = gender;
+    public Student(int id, String name, String email, Date date_of_birth, String gender) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.date_of_birth = date_of_birth;
+        this.gender = gender;
 
-	}
+    }
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public Date getDate_of_birth() {
-		return date_of_birth;
-	}
+    public Date getDate_of_birth() {
+        return date_of_birth;
+    }
 
-	public void setDate_of_birth(Date date_of_birth) {
-		this.date_of_birth = date_of_birth;
-	}
+    public void setDate_of_birth(Date date_of_birth) {
+        this.date_of_birth = date_of_birth;
+    }
 
-	public String getGender() {
-		return gender;
-	}
+    public String getGender() {
+        return gender;
+    }
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
-	public List<Score> getScores() {
-		return scores;
-	}
+    public List<Score> getScores() {
+        return scores;
+    }
 
-	public void setScores(List<Score> scores) {
-		this.scores = scores;
-	}
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
+    }
 
-	public List<Result> getResults() {
-		return results;
-	}
+    public List<Result> getResults() {
+        return results;
+    }
 
-	public void setResults(List<Result> results) {
-		this.results = results;
-	}
+    public void setResults(List<Result> results) {
+        this.results = results;
+    }
 
 }

@@ -14,57 +14,59 @@ import java.util.List;
 @Service
 public class StudentService {
 
-	@Autowired
-	private StudentDAO studentDAO;
-	@Autowired
-	private QuizDAO quizDAO;
-	@Autowired
-	private ResultDAO resultDAO;
-	public Student getStudent(final int id) {
-		return studentDAO.getStudent(id);
-	}
-	public Student getStudentByEmail(final String email) {
-		return studentDAO.getStudentByEmail(email);
-	}
+    @Autowired
+    private StudentDAO studentDAO;
+    @Autowired
+    private QuizDAO quizDAO;
+    @Autowired
+    private ResultDAO resultDAO;
 
-	public List<Student> getStudents() {
-		return studentDAO.getStudents();
-	}
+    public Student getStudent(final int id) {
+        return studentDAO.getStudent(id);
+    }
 
-	public void addStudent(final Student student) {
-		studentDAO.addStudent(student);
-	}
+    public Student getStudentByEmail(final String email) {
+        return studentDAO.getStudentByEmail(email);
+    }
 
-	public void updateStudent(final Student student) {
-		studentDAO.updateStudent(student);
-	}
+    public List<Student> getStudents() {
+        return studentDAO.getStudents();
+    }
 
-	public void deleteStudent(final int id) {
-		studentDAO.deleteStudent(id);
-	}
-	
-	public boolean login(String email,String password) {
-		return studentDAO.validate(email, password);
-	}
+    public void addStudent(final Student student) {
+        studentDAO.addStudent(student);
+    }
 
-	public List<Quiz> getCompletedQuizzes(final Student student){
-		List<Quiz> quizzes = new ArrayList<>();
-		for (Quiz q:quizDAO.getQuizs()){
-			if(resultDAO.isResultPresent(student,q)){
-				quizzes.add(q);
-			}
-		}
-		return quizzes;
-	}
+    public void updateStudent(final Student student) {
+        studentDAO.updateStudent(student);
+    }
 
-	public List<Quiz> getPendingQuizzes(final Student student){
-		List<Quiz> quizzes = new ArrayList<>();
-		for (Quiz q:quizDAO.getQuizs()){
-			if(!resultDAO.isResultPresent(student,q)){
-				quizzes.add(q);
-			}
-		}
-		return quizzes;
-	}
+    public void deleteStudent(final int id) {
+        studentDAO.deleteStudent(id);
+    }
+
+    public boolean login(String email, String password) {
+        return studentDAO.validate(email, password);
+    }
+
+    public List<Quiz> getCompletedQuizzes(final Student student) {
+        List<Quiz> quizzes = new ArrayList<>();
+        for (Quiz q : quizDAO.getQuizs()) {
+            if (resultDAO.isResultPresent(student, q)) {
+                quizzes.add(q);
+            }
+        }
+        return quizzes;
+    }
+
+    public List<Quiz> getPendingQuizzes(final Student student) {
+        List<Quiz> quizzes = new ArrayList<>();
+        for (Quiz q : quizDAO.getQuizs()) {
+            if (!resultDAO.isResultPresent(student, q)) {
+                quizzes.add(q);
+            }
+        }
+        return quizzes;
+    }
 
 }

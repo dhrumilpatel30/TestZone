@@ -1,4 +1,5 @@
 package com.proj.java.onlineexaminationsystem.entity;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -25,7 +26,7 @@ public class Question {
     private String correct_answer;
     @Column
     private int max_marks;
-    
+
 
     public Question() {
     }
@@ -41,7 +42,7 @@ public class Question {
         this.option4 = option4;
         this.correct_answer = correct_answer;
         this.max_marks = max_marks;
-        
+
     }
 
     public int getQuestion_id() {
@@ -116,7 +117,6 @@ public class Question {
         this.max_marks = max_marks;
     }
 
-   
 
     @Override
     public String toString() {

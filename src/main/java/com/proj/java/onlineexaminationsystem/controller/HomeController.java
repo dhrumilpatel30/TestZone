@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
     @RequestMapping("/")
     public String showPage(HttpServletRequest request) {
-    	
-    	HttpSession session = request.getSession();
-    	if(!session.isNew() && session.getAttribute("role") != null) {
-			if (session.getAttribute("role").equals("teacher")) {
-				return "redirect:/teacher";
-			}
-			return "redirect:/student";
-		}
-		session.invalidate();
-		return "redirect:/student/login";
+
+        HttpSession session = request.getSession();
+        if (!session.isNew() && session.getAttribute("role") != null) {
+            if (session.getAttribute("role").equals("teacher")) {
+                return "redirect:/teacher";
+            }
+            return "redirect:/student";
+        }
+        session.invalidate();
+        return "redirect:/student/login";
     }
-    
+
     @RequestMapping("logout")
     public String logout(HttpServletRequest request) {
-    	HttpSession session = request.getSession();
-    	session.invalidate();
-    	return "redirect:/";
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return "redirect:/";
     }
 
 }

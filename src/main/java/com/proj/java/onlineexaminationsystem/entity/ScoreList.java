@@ -11,6 +11,15 @@ public class ScoreList {
         this.scores = scores;
         length = scores.size();
     }
+
+    public ScoreList() {
+    }
+
+    public ScoreList(List<Score> scores, int length) {
+        this.scores = scores;
+        this.length = length;
+    }
+
     public List<Score> getScores() {
         return scores;
     }
@@ -24,14 +33,6 @@ public class ScoreList {
     }
 
     public void setLength(int length) {
-        this.length = length;
-    }
-
-    public ScoreList() {
-    }
-
-    public ScoreList(List<Score> scores, int length) {
-        this.scores = scores;
         this.length = length;
     }
 }

@@ -14,8 +14,7 @@
 
 <%@include file="../components/header.jsp" %>
 <div class="container p-3">
-    <h2>Quiz</h2>
-        <c:if test="${quiz != null}">
+    <c:if test="${quiz != null}">
         <div class="card bg-light mb-3" style="max-width: 20rem;">
             <div class="card-header text-white" style="background-color: #212529;">Quiz Details</div>
             <div class="card-body">
@@ -70,10 +69,10 @@
                         </a>
                         </td>
                         <td>
-                                <button type="button" class="btn btn-dark" data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal">
-                                    Delete Question
-                                </button>
+                            <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal">
+                                Delete Question
+                            </button>
                         </td>
                         <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                              aria-hidden="true">
@@ -92,7 +91,8 @@
                                             Cancel Deletion
                                         </button>
                                         <a href="<%=request.getContextPath()%>/question/delete/${q.question_id}">
-                                            <button type="button" class="btn btn-dark">Confirm For Deleting Question</button>
+                                            <button type="button" class="btn btn-dark">Confirm For Deleting Question
+                                            </button>
                                         </a>
                                     </div>
                                 </div>

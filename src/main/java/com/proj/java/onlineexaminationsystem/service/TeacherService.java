@@ -10,29 +10,30 @@ import java.util.List;
 @Service
 public class TeacherService {
 
-	@Autowired
-	private TeacherDAO teacherDAO;
+    @Autowired
+    private TeacherDAO teacherDAO;
 
-	public Teacher getTeacher(final int id) {
-		return teacherDAO.getTeacher(id);
-	}
+    public Teacher getTeacher(final int id) {
+        return teacherDAO.getTeacher(id);
+    }
 
-	public List<Teacher> getTeachers() {
-		return teacherDAO.getTeachers();
-	}
+    public List<Teacher> getTeachers() {
+        return teacherDAO.getTeachers();
+    }
 
-	public void addTeacher(final Teacher teacher) {
-		teacherDAO.addTeacher(teacher);
-	}
+    public void addTeacher(final Teacher teacher) {
+        teacherDAO.addTeacher(teacher);
+    }
 
-	public void updateTeacher(final Teacher teacher) {
-		teacherDAO.updateTeacher(teacher);
-	}
+    public void updateTeacher(final Teacher teacher) {
+        teacherDAO.updateTeacher(teacher);
+    }
 
-	public void deleteTeacher(final int id) {
-		teacherDAO.deleteTeacher(id);
-	}
-	public Teacher login(String email,String password) {
-		return teacherDAO.validate(email, password);
-	}
+    public void deleteTeacher(final int id) {
+        teacherDAO.deleteTeacher(id);
+    }
+
+    public Teacher login(String email, String password) {
+        return teacherDAO.validate(email, password);
+    }
 }

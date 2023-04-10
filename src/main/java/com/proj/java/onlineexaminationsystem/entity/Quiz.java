@@ -2,7 +2,6 @@ package com.proj.java.onlineexaminationsystem.entity;
 
 
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -17,11 +16,11 @@ public class Quiz {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher_id;
-    @OneToMany(mappedBy="quiz_id", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "quiz_id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Question> questions;
-    @OneToMany(mappedBy="quiz_id",cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "quiz_id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Score> scores;
-    @OneToMany(mappedBy="quiz_id",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "quiz_id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Result> results;
     @Column
     private String quiz_title;
@@ -39,7 +38,7 @@ public class Quiz {
     public Quiz() {
     }
 
-    public Quiz(int quiz_id,String quiz_title, String subject, String duration, int total_max_marks, int avg_score) {
+    public Quiz(int quiz_id, String quiz_title, String subject, String duration, int total_max_marks, int avg_score) {
         this.quiz_id = quiz_id;
         this.quiz_title = quiz_title;
         this.subject = subject;

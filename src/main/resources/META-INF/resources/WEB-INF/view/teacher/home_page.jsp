@@ -37,7 +37,7 @@
                     <th>avg score</th>
                     <th>Edit Questions</th>
                     <th>Edit Quiz</th>
-                    <td>Delete Quiz</td>
+                    <th>Delete Quiz</th>
                     <th>View Quiz Results</th>
                 </tr>
                 </thead>
@@ -59,10 +59,10 @@
                         </a>
                         </td>
                         <td>
-                                <button type="button" class="btn btn-dark" data-bs-toggle="modal"
-                                        data-bs-target="#deleteModal">
-                                    Delete Quiz
-                                </button>
+                            <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal">
+                                Delete Quiz
+                            </button>
                         </td>
                         <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                              aria-hidden="true">
@@ -82,7 +82,8 @@
                                             Cancel Deletion
                                         </button>
                                         <a href="<%=request.getContextPath()%>/quiz/delete/${q.quiz_id}">
-                                            <button type="button" class="btn btn-dark">Confirm For Deleting Quiz</button>
+                                            <button type="button" class="btn btn-dark">Confirm For Deleting Quiz
+                                            </button>
                                         </a>
                                     </div>
                                 </div>
@@ -96,7 +97,9 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <c:if test="${empty quizzesYours}">No Quiz Created</c:if>
+            <c:if test="${empty quizzesYours}">
+                <center><h4>No Quiz Created</h4></center>
+            </c:if>
         </c:when>
     </c:choose>
     <c:choose>
@@ -135,7 +138,9 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <c:if test="${empty quizzesOthers}">No Quiz Created</c:if>
+            <c:if test="${empty quizzesOthers}">
+                <center><h4>No Quiz Created By Others</h4></center>
+            </c:if>
         </c:when>
     </c:choose>
 </div>
