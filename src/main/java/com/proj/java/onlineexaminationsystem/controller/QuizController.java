@@ -20,12 +20,20 @@ public class QuizController {
     private TeacherService teacherService;
 
     @GetMapping("/{id}")
-    public String getQuiz(@PathVariable int id, ModelMap quizModel) {
-        Quiz quiz = quizService.getQuiz(id);
-        quizService.updateQuizMarks(id);
-        quizModel.addAttribute("quiz", quiz);
-        quizModel.addAttribute("questions", quiz.getQuestions());
-        return "quiz/home_page";
+    public String getQuiz(@PathVariable int id, HttpServletRequest request, ModelMap quizModel) {
+
+        HttpSession session = request.getSession();
+        if (!session.isNew() && session.getAttribute("role").equals("teacher")) {
+            Quiz quiz = quizService.getQuiz(id);
+            if(quiz.isIspublished()){
+                return "redirect:/";
+            }
+            quizService.updateQuizMarks(id);
+            quizModel.addAttribute("quiz", quiz);
+            quizModel.addAttribute("questions", quiz.getQuestions());
+            return "quiz/home_page";
+        }
+        return "redirect:/";
     }
 
     @GetMapping("/addQuiz")
@@ -42,8 +50,12 @@ public class QuizController {
 
     @GetMapping("/update/{id}")
     public String updatePage(@PathVariable("id") int id, ModelMap quizModel) {
+
         quizModel.addAttribute("id", id);
         Quiz quiz = quizService.getQuiz(id);
+        if(quiz.isIspublished()){
+            return "redirect:/";
+        }
         quizModel.addAttribute("quiz", quiz);
         return "quiz/update_form";
     }
@@ -67,6 +79,7 @@ public class QuizController {
         if (!session.isNew() && session.getAttribute("role").equals("teacher")) {
             if(quizService.getQuiz(id).getTeacher_id().getId() == (Integer) session.getAttribute("id")){
                 quizService.deleteQuiz(id);
+                session.setAttribute("success","Quiz Deleted Successfully");
             }
         }
         return "redirect:/";
@@ -77,6 +90,10 @@ public class QuizController {
         if (!session.isNew() && session.getAttribute("role").equals("teacher")) {
             Quiz quiz = quizService.getQuiz(id);
             if(quiz.getTeacher_id().getId() == (Integer) session.getAttribute("id")){
+                if(quiz.getPassing_marks() > quiz.getTotal_max_marks()){
+                    session.setAttribute("success","Quiz has higher passing marks than total marks");
+                    return "redirect:/";
+                }
                 quiz.setIspublished(true);
                 quizService.updateQuiz(quiz);
                 session.setAttribute("success","Quiz SuccessFully Published");

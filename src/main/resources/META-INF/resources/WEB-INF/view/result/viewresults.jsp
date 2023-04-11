@@ -65,7 +65,7 @@
         <c:when test="${resultFailed != null}">
             <h4>Failed Students</h4>
             <table class="table">
-                <thead>
+                <thead class="table-dark">
                 <tr>
                     <th>Result Id</th>
                     <th>Student Name</th>
@@ -89,7 +89,7 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <c:if test="${empty resultFailed}">No one is Failed</c:if>
+            <c:if test="${empty resultFailed}"><center><h4>No one is Failed</h4></center></c:if>
         </c:when>
     </c:choose>
 </div>

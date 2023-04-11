@@ -33,7 +33,6 @@ public class ExamController {
             if (session.getAttribute("role").equals("student")) {
                 if(!resultService.isResultPresent((Integer) session.getAttribute("id"),id)) {
                     List<Score> scoreList = scoreService.getExamQuestions((int) session.getAttribute("id"), id);
-                    //			System.out.println("\n\n\n\n\\n\\n\n\n\n\n\n\n\\n\n\n\n"+scoreList+"\n\n\n\n\n\n\n\n\n\n\n");
                     ScoreList scores = new ScoreList(scoreList);
                     examModel.addAttribute("scores", scores);
                     examModel.addAttribute("quiz", quizService.getQuiz(id));
@@ -48,7 +47,6 @@ public class ExamController {
     @PostMapping("/calculateResult")
     public String calculateResult(@ModelAttribute("questions") ScoreList scores) {
         Result result = scoreService.getResult(scores.getScores());
-//			System.out.println("\n\n\n\n\\n\\n\n\n\n\n\n\n\\n\n\n\n"+scores.getScores()+"\n\n\n\n\n\n\n\n\n\n\n");
         resultService.addResult(result);
         return "redirect:/exam/showResult/" + result.getQuiz_id().getQuiz_id();
     }

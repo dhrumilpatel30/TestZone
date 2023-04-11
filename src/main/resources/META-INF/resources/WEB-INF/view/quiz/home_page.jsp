@@ -40,7 +40,6 @@
                 <thead class="table-dark">
                 <tr>
                     <th>question_id</th>
-                    <th>quiz_id</th>
                     <th>question</th>
                     <th>option1</th>
                     <th>option2</th>
@@ -56,7 +55,6 @@
                 <c:forEach var="q" items="${questions}">
                     <tr>
                         <td>${q.question_id}</td>
-                        <td>${q.quiz_id.quiz_title}</td>
                         <td>${q.question}</td>
                         <td>${q.option1}</td>
                         <td>${q.option2}</td>

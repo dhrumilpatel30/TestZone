@@ -48,7 +48,7 @@ public class StudentController {
         HttpSession session = request.getSession();
         session.setAttribute("role", "student");
         session.setAttribute("id", student.getId());
-        session.setAttribute("success", "Login SuccessFull,Welcome");
+        session.setAttribute("success", "Logged in SuccessFull Welcome");
         return "redirect:/";
     }
 
@@ -65,8 +65,6 @@ public class StudentController {
     @PostMapping("signup")
     public String registerStudent(@ModelAttribute("student") Student student, ModelMap model) {
         studentService.addStudent(student);
-//    	List<Student> students = studentService.getStudents();
-//    	model.addAttribute("students", students);
         model.addAttribute("success", "Account Created Successfully");
         return "/student/login_page";
     }

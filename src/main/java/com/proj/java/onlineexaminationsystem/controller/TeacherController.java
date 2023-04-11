@@ -55,7 +55,6 @@ public class TeacherController {
 
     @GetMapping("login")
     public String loginGet() {
-
         return "teacher/login_page";
     }
 
