@@ -34,7 +34,8 @@ public class Quiz {
     private int avg_score;
     @Column
     private int passing_marks;
-
+    @Column
+    private boolean ispublished;
     public Quiz() {
     }
 
@@ -145,5 +146,13 @@ public class Quiz {
 
     public void setResults(List<Result> results) {
         this.results = results;
+    }
+
+    public boolean isIspublished() {
+        return ispublished;
+    }
+
+    public void setIspublished(boolean ispublished) {
+        this.ispublished = ispublished;
     }
 }

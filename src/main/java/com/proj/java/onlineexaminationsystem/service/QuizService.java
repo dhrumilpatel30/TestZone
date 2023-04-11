@@ -7,6 +7,8 @@ import com.proj.java.onlineexaminationsystem.repository.TeacherDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -48,13 +50,33 @@ public class QuizService {
     }
 
     public List<Quiz> getTeacherQuizes(final int teacher_id) {
-        return teacherDAO.getTeacher(teacher_id).getQuiz();
+        List<Quiz> quizzes = teacherDAO.getTeacher(teacher_id).getQuiz();
+
+        List<Quiz> quizList = new ArrayList<>();
+        for (Quiz q:quizzes){
+            if(!q.isIspublished())quizList.add(q);
+        }
+        return quizList;
+    }
+
+    public List<Quiz> getTeacherPublishedQuizes(final int teacher_id) {
+        List<Quiz> quizzes = teacherDAO.getTeacher(teacher_id).getQuiz();
+
+        List<Quiz> quizList = new ArrayList<>();
+        for (Quiz q:quizzes){
+            if(q.isIspublished())quizList.add(q);
+        }
+        return quizList;
     }
 
     public List<Quiz> getNonTeacherQuizes(final int teacher_id) {
         List<Quiz> quizzes = getQuizs();
-        for (Quiz q : getTeacherQuizes(teacher_id)) {
+        for (Quiz q : teacherDAO.getTeacher(teacher_id).getQuiz()) {
             quizzes.remove(q);
+        }
+        Iterator<Quiz> quizIterator = quizzes.listIterator();
+        while (quizIterator.hasNext()){
+            if(!quizIterator.next().isIspublished())quizIterator.remove();
         }
         return quizzes;
     }

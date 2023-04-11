@@ -38,7 +38,7 @@
                     <th>Edit Questions</th>
                     <th>Edit Quiz</th>
                     <th>Delete Quiz</th>
-                    <th>View Quiz Results</th>
+                    <th>Publish Quiz</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -89,8 +89,8 @@
                                 </div>
                             </div>
                         </div>
-                        <td><a href="<%=request.getContextPath()%>/result/${q.quiz_id}">
-                            <button type="button" class="btn btn-dark">Quiz Results</button>
+                        <td><a href="<%=request.getContextPath()%>quiz/publish/${q.quiz_id}">
+                            <button type="button" class="btn btn-dark">Publish</button>
                         </a>
                         </td>
                     </tr>
@@ -102,6 +102,46 @@
             </c:if>
         </c:when>
     </c:choose>
+    <c:choose>
+        <c:when test="${quizzesPublished != null}">
+            <h2>Your Published Quizzes</h2>
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th>id</th>
+                    <th>title</th>
+                    <th>duration</th>
+                    <th>Subject</th>
+                    <th>maximum marks</th>
+                    <th>Passing Marks</th>
+                    <th>avg score</th>
+                    <th>View Quiz Results</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="q" items="${quizzesPublished}">
+                    <tr>
+                        <td>${q.quiz_id}</td>
+                        <td>${q.quiz_title}</td>
+                        <td>${q.duration} min</td>
+                        <td>${q.subject}</td>
+                        <td>${q.total_max_marks}</td>
+                        <td>${q.passing_marks}</td>
+                        <td>${q.avg_score}</td>
+                        <td><a href="<%=request.getContextPath()%>/result/${q.quiz_id}">
+                            <button type="button" class="btn btn-dark">Quiz Results</button>
+                        </a>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            <c:if test="${empty quizzesPublished}">
+                <center><h4>No Quiz Published By You</h4></center>
+            </c:if>
+        </c:when>
+    </c:choose>
+
     <c:choose>
         <c:when test="${quizzesOthers != null}">
             <h2>Other Teachers Quizzes</h2>

@@ -62,7 +62,7 @@ public class StudentService {
     public List<Quiz> getPendingQuizzes(final Student student) {
         List<Quiz> quizzes = new ArrayList<>();
         for (Quiz q : quizDAO.getQuizs()) {
-            if (!resultDAO.isResultPresent(student, q)) {
+            if (!resultDAO.isResultPresent(student, q) && q.isIspublished()) {
                 quizzes.add(q);
             }
         }

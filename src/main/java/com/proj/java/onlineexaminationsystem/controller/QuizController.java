@@ -54,7 +54,9 @@ public class QuizController {
         if (!session.isNew() && session.getAttribute("role").equals("teacher")) {
             int id = (int) session.getAttribute("id");
             quiz.setTeacher_id(teacherService.getTeacher(id));
+            quiz.setIspublished(false);
             quizService.updateQuiz(quiz);
+            session.setAttribute("success","quiz Added SuccessFully");
         }
         return "redirect:/";
     }
@@ -63,7 +65,22 @@ public class QuizController {
     public String deleteQuiz(@PathVariable int id, HttpServletRequest request, ModelMap quizModel) {
         HttpSession session = request.getSession();
         if (!session.isNew() && session.getAttribute("role").equals("teacher")) {
-            quizService.deleteQuiz(id);
+            if(quizService.getQuiz(id).getTeacher_id().getId() == (Integer) session.getAttribute("id")){
+                quizService.deleteQuiz(id);
+            }
+        }
+        return "redirect:/";
+    }
+    @RequestMapping("/publish/{id}")
+    public String publish(@PathVariable int id, HttpServletRequest request, ModelMap quizModel){
+        HttpSession session = request.getSession();
+        if (!session.isNew() && session.getAttribute("role").equals("teacher")) {
+            Quiz quiz = quizService.getQuiz(id);
+            if(quiz.getTeacher_id().getId() == (Integer) session.getAttribute("id")){
+                quiz.setIspublished(true);
+                quizService.updateQuiz(quiz);
+                session.setAttribute("success","Quiz SuccessFully Published");
+            }
         }
         return "redirect:/";
     }

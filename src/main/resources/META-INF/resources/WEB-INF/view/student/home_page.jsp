@@ -13,7 +13,6 @@
 <body>
 
 <%@include file="../components/header.jsp" %>
-<h2 class="m-2">Online Examination System</h2>
 <div class="container p-3">
     <c:if test="${not empty success}">
         <div class="alert alert-success alert-dismissible fade show" role="alert">

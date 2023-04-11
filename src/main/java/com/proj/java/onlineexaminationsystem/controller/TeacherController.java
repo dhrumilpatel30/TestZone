@@ -33,6 +33,7 @@ public class TeacherController {
             session.removeAttribute("success");
         }
         model.addAttribute("quizzesYours", quizService.getTeacherQuizes(teacher_id));
+        model.addAttribute("quizzesPublished", quizService.getTeacherPublishedQuizes(teacher_id));
         model.addAttribute("quizzesOthers", quizService.getNonTeacherQuizes(teacher_id));
         return "teacher/home_page";
     }
@@ -68,8 +69,8 @@ public class TeacherController {
 
     @GetMapping("signup")
     public String registerGet(ModelMap model) {
-        Teacher stu = new Teacher();
-        model.addAttribute("teacher", stu);
+        Teacher teacher = new Teacher();
+        model.addAttribute("teacher", teacher);
         return "teacher/signup";
     }
 
