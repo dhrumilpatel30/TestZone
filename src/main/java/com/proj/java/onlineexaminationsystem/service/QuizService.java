@@ -53,8 +53,8 @@ public class QuizService {
         List<Quiz> quizzes = teacherDAO.getTeacher(teacher_id).getQuiz();
 
         List<Quiz> quizList = new ArrayList<>();
-        for (Quiz q:quizzes){
-            if(!q.isIspublished())quizList.add(q);
+        for (Quiz q : quizzes) {
+            if (!q.isIspublished()) quizList.add(q);
         }
         return quizList;
     }
@@ -63,8 +63,8 @@ public class QuizService {
         List<Quiz> quizzes = teacherDAO.getTeacher(teacher_id).getQuiz();
 
         List<Quiz> quizList = new ArrayList<>();
-        for (Quiz q:quizzes){
-            if(q.isIspublished())quizList.add(q);
+        for (Quiz q : quizzes) {
+            if (q.isIspublished()) quizList.add(q);
         }
         return quizList;
     }
@@ -75,8 +75,8 @@ public class QuizService {
             quizzes.remove(q);
         }
         Iterator<Quiz> quizIterator = quizzes.listIterator();
-        while (quizIterator.hasNext()){
-            if(!quizIterator.next().isIspublished())quizIterator.remove();
+        while (quizIterator.hasNext()) {
+            if (!quizIterator.next().isIspublished()) quizIterator.remove();
         }
         return quizzes;
     }

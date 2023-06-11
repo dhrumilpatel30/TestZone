@@ -48,7 +48,8 @@ public class ResultService {
         Quiz quiz = quizDAO.getQuiz(quiz_id);
         return resultDAO.getResultByStudent(student, quiz);
     }
-    public boolean isResultPresent(final int student_id, final int quiz_id){
+
+    public boolean isResultPresent(final int student_id, final int quiz_id) {
         Student student = studentDAO.getStudent(student_id);
         Quiz quiz = quizDAO.getQuiz(quiz_id);
         return resultDAO.getResultByStudent(student, quiz) != null;

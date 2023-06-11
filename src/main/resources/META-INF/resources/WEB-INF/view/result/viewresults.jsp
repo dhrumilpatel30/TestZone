@@ -58,7 +58,7 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <c:if test="${empty resultPassed}">No one is Passed Yet!</c:if>
+            <c:if test="${empty resultPassed}"><center><h4>No one is Passed Yet!</h4></center></c:if>
         </c:when>
     </c:choose>
     <c:choose>
@@ -89,7 +89,9 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <c:if test="${empty resultFailed}"><center><h4>No one is Failed</h4></center></c:if>
+            <c:if test="${empty resultFailed}">
+                <center><h4>No one is Failed</h4></center>
+            </c:if>
         </c:when>
     </c:choose>
 </div>

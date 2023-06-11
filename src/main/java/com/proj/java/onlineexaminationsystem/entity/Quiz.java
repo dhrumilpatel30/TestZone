@@ -36,6 +36,7 @@ public class Quiz {
     private int passing_marks;
     @Column
     private boolean ispublished;
+
     public Quiz() {
     }
 

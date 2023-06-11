@@ -61,7 +61,7 @@ public class QuestionController {
         HttpSession session = request.getSession();
         int quiz_id = questionService.getQuestion(id).getQuiz_id().getQuiz_id();
         if (!session.isNew() && session.getAttribute("role").equals("teacher")) {
-            if(questionService.getQuestion(id).getQuiz_id().getTeacher_id().getId() == (Integer) session.getAttribute("id")){
+            if (questionService.getQuestion(id).getQuiz_id().getTeacher_id().getId() == (Integer) session.getAttribute("id")) {
                 questionService.deleteQuestion(id);
             }
 

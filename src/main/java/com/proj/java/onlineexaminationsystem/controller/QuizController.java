@@ -25,7 +25,7 @@ public class QuizController {
         HttpSession session = request.getSession();
         if (!session.isNew() && session.getAttribute("role").equals("teacher")) {
             Quiz quiz = quizService.getQuiz(id);
-            if(quiz.isIspublished()){
+            if (quiz.isIspublished()) {
                 return "redirect:/";
             }
             quizService.updateQuizMarks(id);
@@ -53,7 +53,7 @@ public class QuizController {
 
         quizModel.addAttribute("id", id);
         Quiz quiz = quizService.getQuiz(id);
-        if(quiz.isIspublished()){
+        if (quiz.isIspublished()) {
             return "redirect:/";
         }
         quizModel.addAttribute("quiz", quiz);
@@ -68,7 +68,7 @@ public class QuizController {
             quiz.setTeacher_id(teacherService.getTeacher(id));
             quiz.setIspublished(false);
             quizService.updateQuiz(quiz);
-            session.setAttribute("success","quiz Added SuccessFully");
+            session.setAttribute("success", "quiz Added SuccessFully");
         }
         return "redirect:/";
     }
@@ -77,26 +77,27 @@ public class QuizController {
     public String deleteQuiz(@PathVariable int id, HttpServletRequest request, ModelMap quizModel) {
         HttpSession session = request.getSession();
         if (!session.isNew() && session.getAttribute("role").equals("teacher")) {
-            if(quizService.getQuiz(id).getTeacher_id().getId() == (Integer) session.getAttribute("id")){
+            if (quizService.getQuiz(id).getTeacher_id().getId() == (Integer) session.getAttribute("id")) {
                 quizService.deleteQuiz(id);
-                session.setAttribute("success","Quiz Deleted Successfully");
+                session.setAttribute("success", "Quiz Deleted Successfully");
             }
         }
         return "redirect:/";
     }
+
     @RequestMapping("/publish/{id}")
-    public String publish(@PathVariable int id, HttpServletRequest request, ModelMap quizModel){
+    public String publish(@PathVariable int id, HttpServletRequest request, ModelMap quizModel) {
         HttpSession session = request.getSession();
         if (!session.isNew() && session.getAttribute("role").equals("teacher")) {
             Quiz quiz = quizService.getQuiz(id);
-            if(quiz.getTeacher_id().getId() == (Integer) session.getAttribute("id")){
-                if(quiz.getPassing_marks() > quiz.getTotal_max_marks()){
-                    session.setAttribute("success","Quiz has higher passing marks than total marks");
+            if (quiz.getTeacher_id().getId() == (Integer) session.getAttribute("id")) {
+                if (quiz.getPassing_marks() > quiz.getTotal_max_marks()) {
+                    session.setAttribute("success", "Quiz has higher passing marks than total marks");
                     return "redirect:/";
                 }
                 quiz.setIspublished(true);
                 quizService.updateQuiz(quiz);
-                session.setAttribute("success","Quiz SuccessFully Published");
+                session.setAttribute("success", "Quiz SuccessFully Published");
             }
         }
         return "redirect:/";

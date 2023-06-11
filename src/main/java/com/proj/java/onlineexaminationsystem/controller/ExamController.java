@@ -31,7 +31,7 @@ public class ExamController {
         HttpSession session = request.getSession();
         if (!session.isNew() && session.getAttribute("role") != null) {
             if (session.getAttribute("role").equals("student")) {
-                if(!resultService.isResultPresent((Integer) session.getAttribute("id"),id)) {
+                if (!resultService.isResultPresent((Integer) session.getAttribute("id"), id)) {
                     List<Score> scoreList = scoreService.getExamQuestions((int) session.getAttribute("id"), id);
                     ScoreList scores = new ScoreList(scoreList);
                     examModel.addAttribute("scores", scores);
