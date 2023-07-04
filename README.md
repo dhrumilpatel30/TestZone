@@ -1,8 +1,8 @@
 # Online-Examination-System
 
-### This contains java project with the use of spring MVC and hibernate frameworks.
+### This contains Java project with the use of spring MVC and hibernate frameworks.
 
-#### Contributers:
+#### Contributors:
 
 [@dhrumilpatel30](https://www.github.com/dhrumilpatel30)
 
