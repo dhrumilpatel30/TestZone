@@ -1,4 +1,4 @@
-# Online-Examination-System
+# TestZone
 
 ### This contains Java project with the use of spring MVC and hibernate frameworks.
 
