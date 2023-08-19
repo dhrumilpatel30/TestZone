@@ -2,10 +2,6 @@
 
 An amazing Java Spring Boot web application.
 
-### Website: [TestZone](https://8080-cs-cb6a23a6-ebe2-48f7-98d6-58474cd9e3c0.cs-asia-southeast1-ajrg.cloudshell.dev/)
-
-Deployed on Google Cloud Platform using Google Cloud Shell.
-
 ## Description:
 
 TestZone is a quiz app that allows users to test their knowledge on a variety of topics. Users can create their own quizzes and share them with their friends. Users can also take quizzes created by other users.
@@ -51,6 +47,7 @@ Users can create an account and login to the app. Users can sign up in both teac
 Users need to provide their name, email, password, date of birth sign up.
 
 Student Sign up:
+
 ![Alt text](screenshots/stusignup.png)
 
 ### Home Page:
