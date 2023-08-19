@@ -3,12 +3,16 @@ package com.proj.java.onlineexaminationsystem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class OnlineExaminationSystem {
-
+public class OnlineExaminationSystem extends SpringBootServletInitializer{
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder applicationBuilder){
+        return applicationBuilder.sources(OnlineExaminationSystem.class);
+    }
     public static void main(String[] args) {
         SpringApplication.run(OnlineExaminationSystem.class, args);
     }
-
 }
