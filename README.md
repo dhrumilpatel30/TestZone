@@ -6,7 +6,7 @@ An amazing Java Spring Boot web application.
 
 Website:
 
-### Azure: https://testzonewebapp.azurewebsites.net/student/login
+### Azure: https://testzonewebapp.azurewebsites.net/
 
 Database:
 
