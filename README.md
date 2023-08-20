@@ -5,10 +5,12 @@ An amazing Java Spring Boot web application.
 ## Deployed at:
 
 Website:
-###Azure: https://testzonewebapp.azurewebsites.net/student/login
+
+### Azure: https://testzonewebapp.azurewebsites.net/student/login
 
 Database:
-###Azure: https://testzone.mysql.database.azure.com/
+
+### Azure: jdbc:mysql://testzone.mysql.database.azure.com:3306/testzone
 
 ## Description:
 
