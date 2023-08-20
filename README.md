@@ -2,6 +2,14 @@
 
 An amazing Java Spring Boot web application.
 
+## Deployed at:
+
+Website:
+###Azure: https://testzonewebapp.azurewebsites.net/student/login
+
+Database:
+###Azure: https://testzone.mysql.database.azure.com/
+
 ## Description:
 
 TestZone is a quiz app that allows users to test their knowledge on a variety of topics. Users can create their own quizzes and share them with their friends. Users can also take quizzes created by other users.
